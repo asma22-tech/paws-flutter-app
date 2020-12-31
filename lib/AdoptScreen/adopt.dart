@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:Paws/AdoptScreen/animalslist.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:Paws/AdoptScreen/animaldetals.dart';
 
 class Animal {
   String name;
@@ -13,6 +14,8 @@ class Animal {
   bool isFemale;
   String imageUrl;
   Color backgroundColor;
+  String statment;
+  String ownername;
 
   Animal({
     this.name,
@@ -22,6 +25,8 @@ class Animal {
     this.isFemale,
     this.imageUrl,
     this.backgroundColor,
+    this.statment,
+    this.ownername,
   });
 }
 
@@ -45,7 +50,6 @@ class _AdoptScreanState extends State<AdoptScrean>
   @override
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
-    final deviceHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Color(0xffFDCB6E),
       body: SafeArea(
@@ -143,159 +147,169 @@ class _AdoptScreanState extends State<AdoptScrean>
                                                         final animal =
                                                             cats[index];
 
-                                                        return Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                            bottom: 10.0,
-                                                            right: 10.0,
-                                                            left: 10.0,
-                                                          ),
-                                                          child: Stack(
-                                                            alignment: Alignment
-                                                                .centerLeft,
-                                                            children: <Widget>[
-                                                              Material(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            20.0),
-                                                                elevation: 4.0,
-                                                                child: Padding(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .symmetric(
-                                                                    horizontal:
-                                                                        20.0,
-                                                                    vertical:
-                                                                        20.0,
-                                                                  ),
-                                                                  child: Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: <
-                                                                        Widget>[
-                                                                      SizedBox(
-                                                                        width: deviceWidth *
-                                                                            0.4,
-                                                                      ),
-                                                                      Flexible(
-                                                                        child:
-                                                                            Column(
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.start,
-                                                                          children: <
-                                                                              Widget>[
-                                                                            Row(
-                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: <Widget>[
-                                                                                Text(
-                                                                                  animal.name,
-                                                                                  style: TextStyle(
-                                                                                    fontSize: 26.0,
-                                                                                    color: Color(0xff2F3542),
-                                                                                    fontWeight: FontWeight.bold,
-                                                                                  ),
-                                                                                ),
-                                                                                Icon(
-                                                                                  animal.isFemale ? FontAwesomeIcons.venus : FontAwesomeIcons.mars,
-                                                                                  color: Color(0xff2F3542),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            SizedBox(
-                                                                              height: 10.0,
-                                                                            ),
-                                                                            Text(
-                                                                              animal.scientificName,
-                                                                              style: TextStyle(
-                                                                                fontSize: 16.0,
-                                                                                color: Color(0xff2F3542),
-                                                                                fontWeight: FontWeight.w500,
-                                                                              ),
-                                                                            ),
-                                                                            SizedBox(
-                                                                              height: 10.0,
-                                                                            ),
-                                                                            Text(
-                                                                              '${animal.age} years old',
-                                                                              style: TextStyle(
-                                                                                color: Color(0xff2F3542),
-                                                                                fontWeight: FontWeight.w600,
-                                                                              ),
-                                                                            ),
-                                                                            SizedBox(
-                                                                              height: 10.0,
-                                                                            ),
-                                                                            Row(
-                                                                              children: <Widget>[
-                                                                                Icon(
-                                                                                  FontAwesomeIcons.mapMarkerAlt,
-                                                                                  color: Color(0xff2F3542),
-                                                                                  size: 16.0,
-                                                                                ),
-                                                                                SizedBox(
-                                                                                  width: 6.0,
-                                                                                ),
-                                                                                Text(
-                                                                                  animal.shelter,
-                                                                                  style: TextStyle(
-                                                                                    fontSize: 16.0,
-                                                                                    color: Color(0xff2F3542),
-                                                                                    fontWeight: FontWeight.w400,
-                                                                                  ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          ],
+                                                        return GestureDetector(
+                                                          onTap: () =>
+                                                              Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                      builder: (_) =>
+                                                                          AnimalsDetailsScreen(
+                                                                            animal:
+                                                                                animal,
+                                                                          ))),
+                                                          child: Container(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                              bottom: 10.0,
+                                                              right: 10.0,
+                                                              left: 10.0,
+                                                            ),
+                                                            child: Stack(
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              children: <
+                                                                  Widget>[
+                                                                Material(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              20.0),
+                                                                  elevation:
+                                                                      4.0,
+                                                                  child:
+                                                                      Padding(
+                                                                    padding:
+                                                                        EdgeInsets
+                                                                            .symmetric(
+                                                                      horizontal:
+                                                                          20.0,
+                                                                      vertical:
+                                                                          20.0,
+                                                                    ),
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: <
+                                                                          Widget>[
+                                                                        SizedBox(
+                                                                          width:
+                                                                              deviceWidth * 0.4,
                                                                         ),
-                                                                      ),
-                                                                    ],
+                                                                        Flexible(
+                                                                          child:
+                                                                              Column(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children: <Widget>[
+                                                                              Row(
+                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                children: <Widget>[
+                                                                                  Text(
+                                                                                    animal.name,
+                                                                                    style: TextStyle(
+                                                                                      fontSize: 26.0,
+                                                                                      color: Color(0xff2F3542),
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                    ),
+                                                                                  ),
+                                                                                  Icon(
+                                                                                    animal.isFemale ? FontAwesomeIcons.venus : FontAwesomeIcons.mars,
+                                                                                    color: Color(0xff2F3542),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                              SizedBox(
+                                                                                height: 10.0,
+                                                                              ),
+                                                                              Text(
+                                                                                animal.scientificName,
+                                                                                style: TextStyle(
+                                                                                  fontSize: 16.0,
+                                                                                  color: Color(0xff2F3542),
+                                                                                  fontWeight: FontWeight.w500,
+                                                                                ),
+                                                                              ),
+                                                                              SizedBox(
+                                                                                height: 10.0,
+                                                                              ),
+                                                                              Text(
+                                                                                '${animal.age} years old',
+                                                                                style: TextStyle(
+                                                                                  color: Color(0xff2F3542),
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                ),
+                                                                              ),
+                                                                              SizedBox(
+                                                                                height: 10.0,
+                                                                              ),
+                                                                              Row(
+                                                                                children: <Widget>[
+                                                                                  Icon(
+                                                                                    FontAwesomeIcons.mapMarkerAlt,
+                                                                                    color: Color(0xff2F3542),
+                                                                                    size: 16.0,
+                                                                                  ),
+                                                                                  SizedBox(
+                                                                                    width: 6.0,
+                                                                                  ),
+                                                                                  Text(
+                                                                                    animal.ownername,
+                                                                                    style: TextStyle(
+                                                                                      fontSize: 16.0,
+                                                                                      color: Color(0xff2F3542),
+                                                                                      fontWeight: FontWeight.w400,
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
                                                                   ),
                                                                 ),
-                                                              ),
-                                                              Stack(
-                                                                children: <
-                                                                    Widget>[
-                                                                  Container(
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: animal
-                                                                          .backgroundColor,
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
-                                                                    ),
-                                                                    height:
-                                                                        190.0,
-                                                                    width:
-                                                                        deviceWidth *
-                                                                            0.4,
-                                                                  ),
-                                                                  Hero(
-                                                                    tag: animal
-                                                                        .name,
-                                                                    child:
-                                                                        Image(
-                                                                      image: AssetImage(
-                                                                          animal
-                                                                              .imageUrl),
+                                                                Stack(
+                                                                  children: <
+                                                                      Widget>[
+                                                                    Container(
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: animal
+                                                                            .backgroundColor,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(20.0),
+                                                                      ),
                                                                       height:
-                                                                          210.0,
-                                                                      fit: BoxFit
-                                                                          .fitHeight,
+                                                                          190.0,
                                                                       width:
                                                                           deviceWidth *
                                                                               0.4,
                                                                     ),
-                                                                  ),
-                                                                ],
-                                                                alignment:
-                                                                    Alignment
-                                                                        .center,
-                                                              )
-                                                            ],
+                                                                    Hero(
+                                                                      tag: animal
+                                                                          .name,
+                                                                      child:
+                                                                          Image(
+                                                                        image: AssetImage(
+                                                                            animal.imageUrl),
+                                                                        height:
+                                                                            210.0,
+                                                                        fit: BoxFit
+                                                                            .fitHeight,
+                                                                        width: deviceWidth *
+                                                                            0.4,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .center,
+                                                                )
+                                                              ],
+                                                            ),
                                                           ),
                                                         );
                                                       }),
@@ -317,161 +331,171 @@ class _AdoptScreanState extends State<AdoptScrean>
                                                       itemBuilder:
                                                           (context, index) {
                                                         final animal =
-                                                            cats[index];
+                                                            dogs[index];
 
-                                                        return Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                            bottom: 10.0,
-                                                            right: 10.0,
-                                                            left: 10.0,
-                                                          ),
-                                                          child: Stack(
-                                                            alignment: Alignment
-                                                                .centerLeft,
-                                                            children: <Widget>[
-                                                              Material(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            20.0),
-                                                                elevation: 4.0,
-                                                                child: Padding(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .symmetric(
-                                                                    horizontal:
-                                                                        20.0,
-                                                                    vertical:
-                                                                        20.0,
-                                                                  ),
-                                                                  child: Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: <
-                                                                        Widget>[
-                                                                      SizedBox(
-                                                                        width: deviceWidth *
-                                                                            0.4,
-                                                                      ),
-                                                                      Flexible(
-                                                                        child:
-                                                                            Column(
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.start,
-                                                                          children: <
-                                                                              Widget>[
-                                                                            Row(
-                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: <Widget>[
-                                                                                Text(
-                                                                                  animal.name,
-                                                                                  style: TextStyle(
-                                                                                    fontSize: 26.0,
-                                                                                    color: Color(0xff2F3542),
-                                                                                    fontWeight: FontWeight.bold,
-                                                                                  ),
-                                                                                ),
-                                                                                Icon(
-                                                                                  animal.isFemale ? FontAwesomeIcons.venus : FontAwesomeIcons.mars,
-                                                                                  color: Color(0xff2F3542),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            SizedBox(
-                                                                              height: 10.0,
-                                                                            ),
-                                                                            Text(
-                                                                              animal.scientificName,
-                                                                              style: TextStyle(
-                                                                                fontSize: 16.0,
-                                                                                color: Color(0xff2F3542),
-                                                                                fontWeight: FontWeight.w500,
-                                                                              ),
-                                                                            ),
-                                                                            SizedBox(
-                                                                              height: 10.0,
-                                                                            ),
-                                                                            Text(
-                                                                              '${animal.age} years old',
-                                                                              style: TextStyle(
-                                                                                color: Color(0xff2F3542),
-                                                                                fontWeight: FontWeight.w600,
-                                                                              ),
-                                                                            ),
-                                                                            SizedBox(
-                                                                              height: 10.0,
-                                                                            ),
-                                                                            Row(
-                                                                              children: <Widget>[
-                                                                                Icon(
-                                                                                  FontAwesomeIcons.mapMarkerAlt,
-                                                                                  color: Color(0xff2F3542),
-                                                                                  size: 16.0,
-                                                                                ),
-                                                                                SizedBox(
-                                                                                  width: 6.0,
-                                                                                ),
-                                                                                Text(
-                                                                                  animal.shelter,
-                                                                                  style: TextStyle(
-                                                                                    fontSize: 16.0,
-                                                                                    color: Color(0xff2F3542),
-                                                                                    fontWeight: FontWeight.w400,
-                                                                                  ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          ],
+                                                        return GestureDetector(
+                                                          onTap: () =>
+                                                              Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                      builder: (_) =>
+                                                                          AnimalsDetailsScreen(
+                                                                            animal:
+                                                                                animal,
+                                                                          ))),
+                                                          child: Container(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                              bottom: 10.0,
+                                                              right: 10.0,
+                                                              left: 10.0,
+                                                            ),
+                                                            child: Stack(
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              children: <
+                                                                  Widget>[
+                                                                Material(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              20.0),
+                                                                  elevation:
+                                                                      4.0,
+                                                                  child:
+                                                                      Padding(
+                                                                    padding:
+                                                                        EdgeInsets
+                                                                            .symmetric(
+                                                                      horizontal:
+                                                                          20.0,
+                                                                      vertical:
+                                                                          20.0,
+                                                                    ),
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: <
+                                                                          Widget>[
+                                                                        SizedBox(
+                                                                          width:
+                                                                              deviceWidth * 0.4,
                                                                         ),
-                                                                      ),
-                                                                    ],
+                                                                        Flexible(
+                                                                          child:
+                                                                              Column(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children: <Widget>[
+                                                                              Row(
+                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                children: <Widget>[
+                                                                                  Text(
+                                                                                    animal.name,
+                                                                                    style: TextStyle(
+                                                                                      fontSize: 26.0,
+                                                                                      color: Color(0xff2F3542),
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                    ),
+                                                                                  ),
+                                                                                  Icon(
+                                                                                    animal.isFemale ? FontAwesomeIcons.venus : FontAwesomeIcons.mars,
+                                                                                    color: Color(0xff2F3542),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                              SizedBox(
+                                                                                height: 10.0,
+                                                                              ),
+                                                                              Text(
+                                                                                animal.scientificName,
+                                                                                style: TextStyle(
+                                                                                  fontSize: 16.0,
+                                                                                  color: Color(0xff2F3542),
+                                                                                  fontWeight: FontWeight.w500,
+                                                                                ),
+                                                                              ),
+                                                                              SizedBox(
+                                                                                height: 10.0,
+                                                                              ),
+                                                                              Text(
+                                                                                '${animal.age} years old',
+                                                                                style: TextStyle(
+                                                                                  color: Color(0xff2F3542),
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                ),
+                                                                              ),
+                                                                              SizedBox(
+                                                                                height: 10.0,
+                                                                              ),
+                                                                              Row(
+                                                                                children: <Widget>[
+                                                                                  Icon(
+                                                                                    FontAwesomeIcons.mapMarkerAlt,
+                                                                                    color: Color(0xff2F3542),
+                                                                                    size: 16.0,
+                                                                                  ),
+                                                                                  SizedBox(
+                                                                                    width: 6.0,
+                                                                                  ),
+                                                                                  Text(
+                                                                                    animal.ownername,
+                                                                                    style: TextStyle(
+                                                                                      fontSize: 16.0,
+                                                                                      color: Color(0xff2F3542),
+                                                                                      fontWeight: FontWeight.w400,
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
                                                                   ),
                                                                 ),
-                                                              ),
-                                                              Stack(
-                                                                children: <
-                                                                    Widget>[
-                                                                  Container(
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: animal
-                                                                          .backgroundColor,
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
-                                                                    ),
-                                                                    height:
-                                                                        190.0,
-                                                                    width:
-                                                                        deviceWidth *
-                                                                            0.4,
-                                                                  ),
-                                                                  Hero(
-                                                                    tag: animal
-                                                                        .name,
-                                                                    child:
-                                                                        Image(
-                                                                      image: AssetImage(
-                                                                          animal
-                                                                              .imageUrl),
+                                                                Stack(
+                                                                  children: <
+                                                                      Widget>[
+                                                                    Container(
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: animal
+                                                                            .backgroundColor,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(20.0),
+                                                                      ),
                                                                       height:
-                                                                          210.0,
-                                                                      fit: BoxFit
-                                                                          .fitHeight,
+                                                                          190.0,
                                                                       width:
                                                                           deviceWidth *
                                                                               0.4,
                                                                     ),
-                                                                  ),
-                                                                ],
-                                                                alignment:
-                                                                    Alignment
-                                                                        .center,
-                                                              )
-                                                            ],
+                                                                    Hero(
+                                                                      tag: animal
+                                                                          .name,
+                                                                      child:
+                                                                          Image(
+                                                                        image: AssetImage(
+                                                                            animal.imageUrl),
+                                                                        height:
+                                                                            210.0,
+                                                                        fit: BoxFit
+                                                                            .fitHeight,
+                                                                        width: deviceWidth *
+                                                                            0.4,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .center,
+                                                                )
+                                                              ],
+                                                            ),
                                                           ),
                                                         );
                                                       }),
@@ -495,159 +519,169 @@ class _AdoptScreanState extends State<AdoptScrean>
                                                         final animal =
                                                             cats[index];
 
-                                                        return Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                            bottom: 10.0,
-                                                            right: 10.0,
-                                                            left: 10.0,
-                                                          ),
-                                                          child: Stack(
-                                                            alignment: Alignment
-                                                                .centerLeft,
-                                                            children: <Widget>[
-                                                              Material(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            20.0),
-                                                                elevation: 4.0,
-                                                                child: Padding(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .symmetric(
-                                                                    horizontal:
-                                                                        20.0,
-                                                                    vertical:
-                                                                        20.0,
-                                                                  ),
-                                                                  child: Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: <
-                                                                        Widget>[
-                                                                      SizedBox(
-                                                                        width: deviceWidth *
-                                                                            0.4,
-                                                                      ),
-                                                                      Flexible(
-                                                                        child:
-                                                                            Column(
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.start,
-                                                                          children: <
-                                                                              Widget>[
-                                                                            Row(
-                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: <Widget>[
-                                                                                Text(
-                                                                                  animal.name,
-                                                                                  style: TextStyle(
-                                                                                    fontSize: 26.0,
-                                                                                    color: Color(0xff2F3542),
-                                                                                    fontWeight: FontWeight.bold,
-                                                                                  ),
-                                                                                ),
-                                                                                Icon(
-                                                                                  animal.isFemale ? FontAwesomeIcons.venus : FontAwesomeIcons.mars,
-                                                                                  color: Color(0xff2F3542),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            SizedBox(
-                                                                              height: 10.0,
-                                                                            ),
-                                                                            Text(
-                                                                              animal.scientificName,
-                                                                              style: TextStyle(
-                                                                                fontSize: 16.0,
-                                                                                color: Color(0xff2F3542),
-                                                                                fontWeight: FontWeight.w500,
-                                                                              ),
-                                                                            ),
-                                                                            SizedBox(
-                                                                              height: 10.0,
-                                                                            ),
-                                                                            Text(
-                                                                              '${animal.age} years old',
-                                                                              style: TextStyle(
-                                                                                color: Color(0xff2F3542),
-                                                                                fontWeight: FontWeight.w600,
-                                                                              ),
-                                                                            ),
-                                                                            SizedBox(
-                                                                              height: 10.0,
-                                                                            ),
-                                                                            Row(
-                                                                              children: <Widget>[
-                                                                                Icon(
-                                                                                  FontAwesomeIcons.mapMarkerAlt,
-                                                                                  color: Color(0xff2F3542),
-                                                                                  size: 16.0,
-                                                                                ),
-                                                                                SizedBox(
-                                                                                  width: 6.0,
-                                                                                ),
-                                                                                Text(
-                                                                                  animal.shelter,
-                                                                                  style: TextStyle(
-                                                                                    fontSize: 16.0,
-                                                                                    color: Color(0xff2F3542),
-                                                                                    fontWeight: FontWeight.w400,
-                                                                                  ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          ],
+                                                        return GestureDetector(
+                                                          onTap: () =>
+                                                              Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                      builder: (_) =>
+                                                                          AnimalsDetailsScreen(
+                                                                            animal:
+                                                                                animal,
+                                                                          ))),
+                                                          child: Container(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                              bottom: 10.0,
+                                                              right: 10.0,
+                                                              left: 10.0,
+                                                            ),
+                                                            child: Stack(
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              children: <
+                                                                  Widget>[
+                                                                Material(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              20.0),
+                                                                  elevation:
+                                                                      4.0,
+                                                                  child:
+                                                                      Padding(
+                                                                    padding:
+                                                                        EdgeInsets
+                                                                            .symmetric(
+                                                                      horizontal:
+                                                                          20.0,
+                                                                      vertical:
+                                                                          20.0,
+                                                                    ),
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: <
+                                                                          Widget>[
+                                                                        SizedBox(
+                                                                          width:
+                                                                              deviceWidth * 0.4,
                                                                         ),
-                                                                      ),
-                                                                    ],
+                                                                        Flexible(
+                                                                          child:
+                                                                              Column(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children: <Widget>[
+                                                                              Row(
+                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                children: <Widget>[
+                                                                                  Text(
+                                                                                    animal.name,
+                                                                                    style: TextStyle(
+                                                                                      fontSize: 26.0,
+                                                                                      color: Color(0xff2F3542),
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                    ),
+                                                                                  ),
+                                                                                  Icon(
+                                                                                    animal.isFemale ? FontAwesomeIcons.venus : FontAwesomeIcons.mars,
+                                                                                    color: Color(0xff2F3542),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                              SizedBox(
+                                                                                height: 10.0,
+                                                                              ),
+                                                                              Text(
+                                                                                animal.scientificName,
+                                                                                style: TextStyle(
+                                                                                  fontSize: 16.0,
+                                                                                  color: Color(0xff2F3542),
+                                                                                  fontWeight: FontWeight.w500,
+                                                                                ),
+                                                                              ),
+                                                                              SizedBox(
+                                                                                height: 10.0,
+                                                                              ),
+                                                                              Text(
+                                                                                '${animal.age} years old',
+                                                                                style: TextStyle(
+                                                                                  color: Color(0xff2F3542),
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                ),
+                                                                              ),
+                                                                              SizedBox(
+                                                                                height: 10.0,
+                                                                              ),
+                                                                              Row(
+                                                                                children: <Widget>[
+                                                                                  Icon(
+                                                                                    FontAwesomeIcons.mapMarkerAlt,
+                                                                                    color: Color(0xff2F3542),
+                                                                                    size: 16.0,
+                                                                                  ),
+                                                                                  SizedBox(
+                                                                                    width: 6.0,
+                                                                                  ),
+                                                                                  Text(
+                                                                                    animal.ownername,
+                                                                                    style: TextStyle(
+                                                                                      fontSize: 16.0,
+                                                                                      color: Color(0xff2F3542),
+                                                                                      fontWeight: FontWeight.w400,
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
                                                                   ),
                                                                 ),
-                                                              ),
-                                                              Stack(
-                                                                children: <
-                                                                    Widget>[
-                                                                  Container(
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: animal
-                                                                          .backgroundColor,
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
-                                                                    ),
-                                                                    height:
-                                                                        190.0,
-                                                                    width:
-                                                                        deviceWidth *
-                                                                            0.4,
-                                                                  ),
-                                                                  Hero(
-                                                                    tag: animal
-                                                                        .name,
-                                                                    child:
-                                                                        Image(
-                                                                      image: AssetImage(
-                                                                          animal
-                                                                              .imageUrl),
+                                                                Stack(
+                                                                  children: <
+                                                                      Widget>[
+                                                                    Container(
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: animal
+                                                                            .backgroundColor,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(20.0),
+                                                                      ),
                                                                       height:
-                                                                          210.0,
-                                                                      fit: BoxFit
-                                                                          .fitHeight,
+                                                                          190.0,
                                                                       width:
                                                                           deviceWidth *
                                                                               0.4,
                                                                     ),
-                                                                  ),
-                                                                ],
-                                                                alignment:
-                                                                    Alignment
-                                                                        .center,
-                                                              )
-                                                            ],
+                                                                    Hero(
+                                                                      tag: animal
+                                                                          .name,
+                                                                      child:
+                                                                          Image(
+                                                                        image: AssetImage(
+                                                                            animal.imageUrl),
+                                                                        height:
+                                                                            210.0,
+                                                                        fit: BoxFit
+                                                                            .fitHeight,
+                                                                        width: deviceWidth *
+                                                                            0.4,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .center,
+                                                                )
+                                                              ],
+                                                            ),
                                                           ),
                                                         );
                                                       }),
@@ -668,161 +702,171 @@ class _AdoptScreanState extends State<AdoptScrean>
                                                       itemBuilder:
                                                           (context, index) {
                                                         final animal =
-                                                            cats[index];
+                                                            fishes[index];
 
-                                                        return Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                            bottom: 10.0,
-                                                            right: 10.0,
-                                                            left: 10.0,
-                                                          ),
-                                                          child: Stack(
-                                                            alignment: Alignment
-                                                                .centerLeft,
-                                                            children: <Widget>[
-                                                              Material(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            20.0),
-                                                                elevation: 4.0,
-                                                                child: Padding(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .symmetric(
-                                                                    horizontal:
-                                                                        20.0,
-                                                                    vertical:
-                                                                        20.0,
-                                                                  ),
-                                                                  child: Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: <
-                                                                        Widget>[
-                                                                      SizedBox(
-                                                                        width: deviceWidth *
-                                                                            0.4,
-                                                                      ),
-                                                                      Flexible(
-                                                                        child:
-                                                                            Column(
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.start,
-                                                                          children: <
-                                                                              Widget>[
-                                                                            Row(
-                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: <Widget>[
-                                                                                Text(
-                                                                                  animal.name,
-                                                                                  style: TextStyle(
-                                                                                    fontSize: 26.0,
-                                                                                    color: Color(0xff2F3542),
-                                                                                    fontWeight: FontWeight.bold,
-                                                                                  ),
-                                                                                ),
-                                                                                Icon(
-                                                                                  animal.isFemale ? FontAwesomeIcons.venus : FontAwesomeIcons.mars,
-                                                                                  color: Color(0xff2F3542),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            SizedBox(
-                                                                              height: 10.0,
-                                                                            ),
-                                                                            Text(
-                                                                              animal.scientificName,
-                                                                              style: TextStyle(
-                                                                                fontSize: 16.0,
-                                                                                color: Color(0xff2F3542),
-                                                                                fontWeight: FontWeight.w500,
-                                                                              ),
-                                                                            ),
-                                                                            SizedBox(
-                                                                              height: 10.0,
-                                                                            ),
-                                                                            Text(
-                                                                              '${animal.age} years old',
-                                                                              style: TextStyle(
-                                                                                color: Color(0xff2F3542),
-                                                                                fontWeight: FontWeight.w600,
-                                                                              ),
-                                                                            ),
-                                                                            SizedBox(
-                                                                              height: 10.0,
-                                                                            ),
-                                                                            Row(
-                                                                              children: <Widget>[
-                                                                                Icon(
-                                                                                  FontAwesomeIcons.mapMarkerAlt,
-                                                                                  color: Color(0xff2F3542),
-                                                                                  size: 16.0,
-                                                                                ),
-                                                                                SizedBox(
-                                                                                  width: 6.0,
-                                                                                ),
-                                                                                Text(
-                                                                                  animal.shelter,
-                                                                                  style: TextStyle(
-                                                                                    fontSize: 16.0,
-                                                                                    color: Color(0xff2F3542),
-                                                                                    fontWeight: FontWeight.w400,
-                                                                                  ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          ],
+                                                        return GestureDetector(
+                                                          onTap: () =>
+                                                              Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                      builder: (_) =>
+                                                                          AnimalsDetailsScreen(
+                                                                            animal:
+                                                                                animal,
+                                                                          ))),
+                                                          child: Container(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                              bottom: 10.0,
+                                                              right: 10.0,
+                                                              left: 10.0,
+                                                            ),
+                                                            child: Stack(
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              children: <
+                                                                  Widget>[
+                                                                Material(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              20.0),
+                                                                  elevation:
+                                                                      4.0,
+                                                                  child:
+                                                                      Padding(
+                                                                    padding:
+                                                                        EdgeInsets
+                                                                            .symmetric(
+                                                                      horizontal:
+                                                                          20.0,
+                                                                      vertical:
+                                                                          20.0,
+                                                                    ),
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: <
+                                                                          Widget>[
+                                                                        SizedBox(
+                                                                          width:
+                                                                              deviceWidth * 0.4,
                                                                         ),
-                                                                      ),
-                                                                    ],
+                                                                        Flexible(
+                                                                          child:
+                                                                              Column(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children: <Widget>[
+                                                                              Row(
+                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                children: <Widget>[
+                                                                                  Text(
+                                                                                    animal.name,
+                                                                                    style: TextStyle(
+                                                                                      fontSize: 26.0,
+                                                                                      color: Color(0xff2F3542),
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                    ),
+                                                                                  ),
+                                                                                  Icon(
+                                                                                    animal.isFemale ? FontAwesomeIcons.venus : FontAwesomeIcons.mars,
+                                                                                    color: Color(0xff2F3542),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                              SizedBox(
+                                                                                height: 10.0,
+                                                                              ),
+                                                                              Text(
+                                                                                animal.scientificName,
+                                                                                style: TextStyle(
+                                                                                  fontSize: 16.0,
+                                                                                  color: Color(0xff2F3542),
+                                                                                  fontWeight: FontWeight.w500,
+                                                                                ),
+                                                                              ),
+                                                                              SizedBox(
+                                                                                height: 10.0,
+                                                                              ),
+                                                                              Text(
+                                                                                '${animal.age} years old',
+                                                                                style: TextStyle(
+                                                                                  color: Color(0xff2F3542),
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                ),
+                                                                              ),
+                                                                              SizedBox(
+                                                                                height: 10.0,
+                                                                              ),
+                                                                              Row(
+                                                                                children: <Widget>[
+                                                                                  Icon(
+                                                                                    FontAwesomeIcons.mapMarkerAlt,
+                                                                                    color: Color(0xff2F3542),
+                                                                                    size: 16.0,
+                                                                                  ),
+                                                                                  SizedBox(
+                                                                                    width: 6.0,
+                                                                                  ),
+                                                                                  Text(
+                                                                                    animal.ownername,
+                                                                                    style: TextStyle(
+                                                                                      fontSize: 16.0,
+                                                                                      color: Color(0xff2F3542),
+                                                                                      fontWeight: FontWeight.w400,
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
                                                                   ),
                                                                 ),
-                                                              ),
-                                                              Stack(
-                                                                children: <
-                                                                    Widget>[
-                                                                  Container(
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: animal
-                                                                          .backgroundColor,
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
-                                                                    ),
-                                                                    height:
-                                                                        190.0,
-                                                                    width:
-                                                                        deviceWidth *
-                                                                            0.4,
-                                                                  ),
-                                                                  Hero(
-                                                                    tag: animal
-                                                                        .name,
-                                                                    child:
-                                                                        Image(
-                                                                      image: AssetImage(
-                                                                          animal
-                                                                              .imageUrl),
+                                                                Stack(
+                                                                  children: <
+                                                                      Widget>[
+                                                                    Container(
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: animal
+                                                                            .backgroundColor,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(20.0),
+                                                                      ),
                                                                       height:
-                                                                          210.0,
-                                                                      fit: BoxFit
-                                                                          .fitHeight,
+                                                                          190.0,
                                                                       width:
                                                                           deviceWidth *
                                                                               0.4,
                                                                     ),
-                                                                  ),
-                                                                ],
-                                                                alignment:
-                                                                    Alignment
-                                                                        .center,
-                                                              )
-                                                            ],
+                                                                    Hero(
+                                                                      tag: animal
+                                                                          .name,
+                                                                      child:
+                                                                          Image(
+                                                                        image: AssetImage(
+                                                                            animal.imageUrl),
+                                                                        height:
+                                                                            210.0,
+                                                                        fit: BoxFit
+                                                                            .fitHeight,
+                                                                        width: deviceWidth *
+                                                                            0.4,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .center,
+                                                                )
+                                                              ],
+                                                            ),
                                                           ),
                                                         );
                                                       }),
@@ -843,184 +887,171 @@ class _AdoptScreanState extends State<AdoptScrean>
                                                       itemBuilder:
                                                           (context, index) {
                                                         final animal =
-                                                            cats[index];
+                                                            frogs[index];
 
-                                                        return Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                            bottom: 10.0,
-                                                            right: 10.0,
-                                                            left: 10.0,
-                                                          ),
-                                                          child: Stack(
-                                                            alignment: Alignment
-                                                                .centerLeft,
-                                                            children: <Widget>[
-                                                              Material(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            20.0),
-                                                                elevation: 4.0,
-                                                                child: Padding(
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .symmetric(
-                                                                    horizontal:
-                                                                        20.0,
-                                                                    vertical:
-                                                                        10.0,
-                                                                  ),
-                                                                  child: Row(
-                                                                    mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .spaceBetween,
-                                                                    children: <
-                                                                        Widget>[
-                                                                      SizedBox(
-                                                                        width: deviceWidth *
-                                                                            0.4,
-                                                                      ),
-                                                                      Flexible(
-                                                                        child:
-                                                                            Column(
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.start,
-                                                                          children: <
-                                                                              Widget>[
-                                                                            Row(
-                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: <Widget>[
-                                                                                Text(
-                                                                                  animal.name,
-                                                                                  style: TextStyle(
-                                                                                    fontSize: 26.0,
-                                                                                    color: Color(0xff2F3542),
-                                                                                    fontWeight: FontWeight.bold,
-                                                                                  ),
-                                                                                ),
-                                                                                Icon(
-                                                                                  animal.isFemale ? FontAwesomeIcons.venus : FontAwesomeIcons.mars,
-                                                                                  color: Color(0xff2F3542),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            SizedBox(
-                                                                              height: 5.0,
-                                                                            ),
-                                                                            Text(
-                                                                              animal.scientificName,
-                                                                              style: TextStyle(
-                                                                                fontSize: 16.0,
-                                                                                color: Color(0xff2F3542),
-                                                                                fontWeight: FontWeight.w500,
-                                                                              ),
-                                                                            ),
-                                                                            SizedBox(
-                                                                              height: 5.0,
-                                                                            ),
-                                                                            Text(
-                                                                              '${animal.age} years old',
-                                                                              style: TextStyle(
-                                                                                color: Color(0xff2F3542),
-                                                                                fontWeight: FontWeight.w600,
-                                                                              ),
-                                                                            ),
-                                                                            SizedBox(
-                                                                              height: 5.0,
-                                                                            ),
-                                                                            Row(
-                                                                              children: <Widget>[
-                                                                                Icon(
-                                                                                  FontAwesomeIcons.mapMarkerAlt,
-                                                                                  color: Color(0xff2F3542),
-                                                                                  size: 16.0,
-                                                                                ),
-                                                                                SizedBox(
-                                                                                  width: 6.0,
-                                                                                ),
-                                                                                Text(
-                                                                                  animal.shelter,
-                                                                                  style: TextStyle(
-                                                                                    fontSize: 16.0,
-                                                                                    color: Color(0xff2F3542),
-                                                                                    fontWeight: FontWeight.w400,
-                                                                                  ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            new SizedBox(
-                                                                              width: 80.0,
-                                                                              height: 35.0,
-                                                                              child: RaisedButton(
-                                                                                splashColor: Colors.pink[50],
-                                                                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-                                                                                color: Colors.black,
-                                                                                onPressed: () {},
-                                                                                child: Row(
-                                                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                                                                  mainAxisSize: MainAxisSize.min,
-                                                                                  children: <Widget>[
-                                                                                    Text(
-                                                                                      'Next',
-                                                                                      style: TextStyle(
-                                                                                        color: Color(0xff2F3542),
-                                                                                        fontSize: 18.0,
-                                                                                      ),
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          ],
+                                                        return GestureDetector(
+                                                          onTap: () =>
+                                                              Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                      builder: (_) =>
+                                                                          AnimalsDetailsScreen(
+                                                                            animal:
+                                                                                animal,
+                                                                          ))),
+                                                          child: Container(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                              bottom: 50.0,
+                                                              right: 10.0,
+                                                              left: 10.0,
+                                                            ),
+                                                            child: Stack(
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              children: <
+                                                                  Widget>[
+                                                                Material(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              20.0),
+                                                                  elevation:
+                                                                      4.0,
+                                                                  child:
+                                                                      Padding(
+                                                                    padding:
+                                                                        EdgeInsets
+                                                                            .symmetric(
+                                                                      horizontal:
+                                                                          50.0,
+                                                                      vertical:
+                                                                          20.0,
+                                                                    ),
+                                                                    child: Row(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceBetween,
+                                                                      children: <
+                                                                          Widget>[
+                                                                        SizedBox(
+                                                                          width:
+                                                                              deviceWidth * 0.4,
                                                                         ),
-                                                                      ),
-                                                                    ],
+                                                                        Flexible(
+                                                                          child:
+                                                                              Column(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children: <Widget>[
+                                                                              Row(
+                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                mainAxisSize: MainAxisSize.max,
+                                                                                children: <Widget>[
+                                                                                  Text(
+                                                                                    animal.name,
+                                                                                    style: TextStyle(
+                                                                                      fontSize: 26.0,
+                                                                                      color: Color(0xff2F3542),
+                                                                                      fontWeight: FontWeight.bold,
+                                                                                    ),
+                                                                                  ),
+                                                                                  Icon(
+                                                                                    animal.isFemale ? FontAwesomeIcons.venus : FontAwesomeIcons.mars,
+                                                                                    color: Color(0xff2F3542),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                              SizedBox(
+                                                                                height: 5.0,
+                                                                              ),
+                                                                              Text(
+                                                                                animal.scientificName,
+                                                                                style: TextStyle(
+                                                                                  fontSize: 16.0,
+                                                                                  color: Color(0xff2F3542),
+                                                                                  fontWeight: FontWeight.w500,
+                                                                                ),
+                                                                              ),
+                                                                              SizedBox(
+                                                                                height: 5.0,
+                                                                              ),
+                                                                              Text(
+                                                                                '${animal.age} years old',
+                                                                                style: TextStyle(
+                                                                                  color: Color(0xff2F3542),
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                ),
+                                                                              ),
+                                                                              SizedBox(
+                                                                                height: 5.0,
+                                                                              ),
+                                                                              Row(
+                                                                                children: <Widget>[
+                                                                                  Icon(
+                                                                                    FontAwesomeIcons.mapMarkerAlt,
+                                                                                    color: Color(0xff2F3542),
+                                                                                    size: 16.0,
+                                                                                  ),
+                                                                                  SizedBox(
+                                                                                    width: 6.0,
+                                                                                  ),
+                                                                                  Text(
+                                                                                    animal.ownername,
+                                                                                    style: TextStyle(
+                                                                                      fontSize: 16.0,
+                                                                                      color: Color(0xff2F3542),
+                                                                                      fontWeight: FontWeight.w400,
+                                                                                    ),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
+                                                                      ],
+                                                                    ),
                                                                   ),
                                                                 ),
-                                                              ),
-                                                              Stack(
-                                                                children: <
-                                                                    Widget>[
-                                                                  Container(
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color: animal
-                                                                          .backgroundColor,
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              20.0),
-                                                                    ),
-                                                                    height:
-                                                                        190.0,
-                                                                    width:
-                                                                        deviceWidth *
-                                                                            0.4,
-                                                                  ),
-                                                                  Hero(
-                                                                    tag: animal
-                                                                        .name,
-                                                                    child:
-                                                                        Image(
-                                                                      image: AssetImage(
-                                                                          animal
-                                                                              .imageUrl),
+                                                                Stack(
+                                                                  children: <
+                                                                      Widget>[
+                                                                    Container(
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                        color: animal
+                                                                            .backgroundColor,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(20.0),
+                                                                      ),
                                                                       height:
-                                                                          210.0,
-                                                                      fit: BoxFit
-                                                                          .fitHeight,
+                                                                          190.0,
                                                                       width:
                                                                           deviceWidth *
                                                                               0.4,
                                                                     ),
-                                                                  ),
-                                                                ],
-                                                                alignment:
-                                                                    Alignment
-                                                                        .center,
-                                                              )
-                                                            ],
+                                                                    Hero(
+                                                                      tag: animal
+                                                                          .name,
+                                                                      child:
+                                                                          Image(
+                                                                        image: AssetImage(
+                                                                            animal.imageUrl),
+                                                                        height:
+                                                                            210.0,
+                                                                        fit: BoxFit
+                                                                            .fitHeight,
+                                                                        width: deviceWidth *
+                                                                            0.4,
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .center,
+                                                                )
+                                                              ],
+                                                            ),
                                                           ),
                                                         );
                                                       }),

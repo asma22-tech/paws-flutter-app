@@ -2,878 +2,52 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:Paws/AdoptScreen/adopt.dart';
+import 'package:Paws/ShelterScreen/shelters.dart';
+import 'package:Paws/StrayScreen/stray.dart';
 
-
-class Dashboardpage extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   @override
-  _DashboardpageState createState() => _DashboardpageState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _DashboardpageState extends State<Dashboardpage>
-    with TickerProviderStateMixin {
-  AnimationController animationController;
-  double _topBarHeight = 0.0;
-
-  ScrollController _scrollController;
-
-  @override
-  void initState() {
-    super.initState();
-    animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
-    _scrollController = ScrollController()
-      ..addListener(() {
-        print(_scrollController.offset);
-        if (_scrollController.offset != 0.0) {
-          setState(() {
-            _topBarHeight = 94;
-          });
-        } else if (_scrollController.offset == 0.0) {
-          setState(() {
-            _topBarHeight = 0.0;
-          });
-        }
-      });
-  }
-
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Stack(
-          children: [
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              top: 0,
-              child: SingleChildScrollView(
-                controller: _scrollController,
-                child: Column(
-                  children: [
-                    Container(
-                      height: 126,
-                      decoration: BoxDecoration(
-                          color: Color(0xffF4E3E3),
-                          borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(36),
-                            bottomLeft: Radius.circular(36),
-                          )),
-                      child: Stack(
-                        children: [
-                          Positioned(
-                            right: 8,
-                            top: 1,
-                            child: CircleAvatar(
-                              backgroundColor: Color(0xffF4E3E3),
-                              radius: 20,
-                              backgroundImage: NetworkImage(
-                                  "https://avatars0.githubusercontent.com/u/19484515?s=460&u=0ec7b31ff9129826cccc5cd971887a9dd0e0a538&v=4"),
-                            ),
-                          ),
-                          Positioned(
-                            left: 16,
-                            top: 5,
-                            bottom: 0,
-                            right: 24,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Hi Human",
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      color: Color(0xff2F3542),
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(
-                                  height: 2,
-                                ),
-                                Text(
-                                  "What are we learning today?",
-                                  style: TextStyle(
-                                      color: Color(0xff2F3542), fontSize: 15),
-                                ),
-                                Spacer(),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 20),
-                                  child: Container(
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(25)),
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 20, vertical: 1),
-                                            child: TextField(
-                                              decoration: InputDecoration(
-                                                  border: InputBorder.none,
-                                                  hintText: "Search locarion"),
-                                            ),
-                                          ),
-                                          flex: 12,
-                                        ),
-                                        Expanded(
-                                            flex: 3,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 8,
-                                                      vertical: 8),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    color: Colors.grey[200],
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20)),
-                                                child: Center(
-                                                  child: Icon(Icons.search),
-                                                ),
-                                              ),
-                                            )),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: SizedBox(
-                        height: MediaQuery.of(context).size.height - 350,
-                        width: MediaQuery.of(context).size.width - 24,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(24)),
-                          elevation: 24,
-                          color: Colors.white,
-                          shadowColor: Colors.pink[50],
-                          child: Column(
-                            children: [
-                              Expanded(
-                                flex: 8,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(24),
-                                        topLeft: Radius.circular(24)),
-                                    gradient: LinearGradient(
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                      colors: [
-                                        Colors.white,
-                                        Colors.pink[50],
-                                      ],
-                                    ),
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Spacer(),
-                                      Text(
-                                        "Adopt",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          "Adopt Animals",
-                                          style: TextStyle(fontSize: 13),
-                                        ),
-                                      ),
-                                      Spacer(),
-                                      Container(
-                                        height: 153,
-                                        width: double.infinity,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(30.0),
-                                          child: Image(
-                                            image: AssetImage(
-                                              'assets/images/3.png',
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 3,
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      flex: 1,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 16, vertical: 20),
-                                        child: Row(
-                                          children: [
-                                            Expanded(
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                            topLeft: Radius
-                                                                .circular(16),
-                                                            bottomLeft:
-                                                                Radius.circular(
-                                                                    16))),
-                                              ),
-                                            ),
-                                            VerticalDivider(
-                                              width: 2,
-                                              thickness: 0,
-                                              color: Colors.white,
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                color: Colors.white,
-                                              )),
-                                            ),
-                                            VerticalDivider(
-                                              width: 2,
-                                              thickness: 0,
-                                              color: Colors.white,
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                color: Colors.deepPurple[50],
-                                              )),
-                                            ),
-                                            VerticalDivider(
-                                              width: 2,
-                                              thickness: 0,
-                                              color: Colors.white,
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                color: Colors.deepPurple[50],
-                                              )),
-                                            ),
-                                            VerticalDivider(
-                                              width: 2,
-                                              thickness: 0,
-                                              color: Colors.white,
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                color: Colors.white,
-                                              )),
-                                            ),
-                                            VerticalDivider(
-                                              width: 2,
-                                              thickness: 0,
-                                              color: Colors.white,
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                color: Colors.white,
-                                              )),
-                                            ),
-                                            VerticalDivider(
-                                              width: 2,
-                                              thickness: 0,
-                                              color: Colors.white,
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.only(
-                                                              topRight: Radius
-                                                                  .circular(16),
-                                                              bottomRight: Radius
-                                                                  .circular(
-                                                                      16)))),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 8,
-                                      child: Row(
-                                        children: [
-                                          Expanded(
-                                            flex: 1,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(12.0),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    "see animals",
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 18,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    "avaiblale",
-                                                    style:
-                                                        TextStyle(fontSize: 13),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 1,
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 32,
-                                                  top: 12,
-                                                  bottom: 12,
-                                                  right: 16),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    color: Color(0xffFF6B81),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            16)),
-                                                child: FlatButton(
-                                                  onPressed: () {
-                                                    Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (context) {
-                                                        return AdoptScrean();
-                                                      }),
-                                                    );
-                                                  },
-                                                  child: Center(
-                                                    child: Text(
-                                                      "Adopt",
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Colors.white,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: SizedBox(
-                        height: MediaQuery.of(context).size.height - 350,
-                        width: MediaQuery.of(context).size.width - 24,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(24)),
-                          elevation: 24,
-                          color: Colors.white,
-                          shadowColor: Colors.pink[50],
-                          child: Column(
-                            children: [
-                              Expanded(
-                                flex: 8,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(24),
-                                        topLeft: Radius.circular(24)),
-                                    gradient: LinearGradient(
-                                      begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                      colors: [
-                                        Colors.white,
-                                        Colors.pink[50],
-                                      ],
-                                    ),
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Spacer(),
-                                      Text(
-                                        "Donate",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          "help shelters",
-                                          style: TextStyle(fontSize: 13),
-                                        ),
-                                      ),
-                                      Spacer(),
-                                      Container(
-                                        height: 153,
-                                        width: double.infinity,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(30.0),
-                                          child: Image(
-                                            image: AssetImage(
-                                              'assets/images/3.png',
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 3,
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      flex: 1,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 16, vertical: 20),
-                                        child: Row(
-                                          children: [
-                                            Expanded(
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                            topLeft: Radius
-                                                                .circular(16),
-                                                            bottomLeft:
-                                                                Radius.circular(
-                                                                    16))),
-                                              ),
-                                            ),
-                                            VerticalDivider(
-                                              width: 2,
-                                              thickness: 0,
-                                              color: Colors.white,
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                color: Colors.white,
-                                              )),
-                                            ),
-                                            VerticalDivider(
-                                              width: 2,
-                                              thickness: 0,
-                                              color: Colors.white,
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                color: Colors.deepPurple[50],
-                                              )),
-                                            ),
-                                            VerticalDivider(
-                                              width: 2,
-                                              thickness: 0,
-                                              color: Colors.white,
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                color: Colors.deepPurple[50],
-                                              )),
-                                            ),
-                                            VerticalDivider(
-                                              width: 2,
-                                              thickness: 0,
-                                              color: Colors.white,
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                color: Colors.white,
-                                              )),
-                                            ),
-                                            VerticalDivider(
-                                              width: 2,
-                                              thickness: 0,
-                                              color: Colors.white,
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                color: Colors.white,
-                                              )),
-                                            ),
-                                            VerticalDivider(
-                                              width: 2,
-                                              thickness: 0,
-                                              color: Colors.white,
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.only(
-                                                              topRight: Radius
-                                                                  .circular(16),
-                                                              bottomRight: Radius
-                                                                  .circular(
-                                                                      16)))),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 8,
-                                      child: Row(
-                                        children: [
-                                          Expanded(
-                                            flex: 1,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(12.0),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    "see shelters",
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 18,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    "for donation",
-                                                    style:
-                                                        TextStyle(fontSize: 13),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 1,
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 32,
-                                                  top: 12,
-                                                  bottom: 12,
-                                                  right: 16),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    color: Color(0xffFF6B81),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            16)),
-                                                child: FlatButton(
-                                                  onPressed: () {
-                                                    print('hello');
-                                                  },
-                                                  child: Center(
-                                                    child: Text(
-                                                      "Donate",
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Colors.white,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: SizedBox(
-                        height: MediaQuery.of(context).size.height - 350,
-                        width: MediaQuery.of(context).size.width - 24,
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(24)),
-                          elevation: 24,
-                          color: Colors.white,
-                          shadowColor: Color(0xF4E3E3),
-                          child: Column(
-                            children: [
-                              Expanded(
-                                flex: 8,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
-                                          topRight: Radius.circular(24),
-                                          topLeft: Radius.circular(24)),
-                                      gradient: LinearGradient(
-                                          begin: Alignment.topCenter,
-                                          end: Alignment.bottomCenter,
-                                          colors: [
-                                            Colors.white,
-                                            Colors.pink[50],
-                                          ])),
-                                  child: Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Spacer(),
-                                      Text(
-                                        "Stray",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          "report a stray animale",
-                                          style: TextStyle(fontSize: 13),
-                                        ),
-                                      ),
-                                      Spacer(),
-                                      Container(
-                                        height: 153,
-                                        width: double.infinity,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(30.0),
-                                          child: Image(
-                                            image: AssetImage(
-                                              'assets/images/1.png',
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 3,
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      flex: 1,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 16, vertical: 20),
-                                        child: Row(
-                                          children: [
-                                            Expanded(
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.only(
-                                                            topLeft: Radius
-                                                                .circular(16),
-                                                            bottomLeft:
-                                                                Radius.circular(
-                                                                    16))),
-                                              ),
-                                            ),
-                                            VerticalDivider(
-                                              width: 2,
-                                              thickness: 0,
-                                              color: Colors.white,
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                color: Colors.white,
-                                              )),
-                                            ),
-                                            VerticalDivider(
-                                              width: 2,
-                                              thickness: 0,
-                                              color: Colors.white,
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                color: Colors.white,
-                                              )),
-                                            ),
-                                            VerticalDivider(
-                                              width: 2,
-                                              thickness: 0,
-                                              color: Colors.white,
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                color: Colors.white,
-                                              )),
-                                            ),
-                                            VerticalDivider(
-                                              width: 2,
-                                              thickness: 0,
-                                              color: Colors.white,
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                color: Colors.white,
-                                              )),
-                                            ),
-                                            VerticalDivider(
-                                              width: 2,
-                                              thickness: 0,
-                                              color: Colors.white,
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                color: Colors.white,
-                                              )),
-                                            ),
-                                            VerticalDivider(
-                                              width: 2,
-                                              thickness: 0,
-                                              color: Colors.white,
-                                            ),
-                                            Expanded(
-                                              child: Container(
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.only(
-                                                              topRight: Radius
-                                                                  .circular(16),
-                                                              bottomRight: Radius
-                                                                  .circular(
-                                                                      16)))),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 8,
-                                      child: Row(
-                                        children: [
-                                          Expanded(
-                                            flex: 1,
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(12.0),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    "report seeing ",
-                                                    style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 18,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    "stary",
-                                                    style:
-                                                        TextStyle(fontSize: 13),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          Expanded(
-                                            flex: 1,
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 32,
-                                                  top: 12,
-                                                  bottom: 12,
-                                                  right: 16),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    color: Color(0xffFF6B81),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            16)),
-                                                child: FlatButton(
-                                                  onPressed: () {
-                                                    print('hello');
-                                                  },
-                                                  child: Center(
-                                                    child: Text(
-                                                      "Report",
-                                                      style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Colors.white,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
+      appBar: AppBar(
+        backgroundColor: Color(0xff2F3542),
+        elevation: 0.0,
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          iconSize: 28.0,
+          onPressed: () {},
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.notifications_none),
+            iconSize: 28.0,
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.favorite),
+            iconSize: 28.0,
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.forum_rounded),
+            iconSize: 28.0,
+            onPressed: () {},
+          ),
+        ],
+      ),
+      body: CustomScrollView(
+        physics: ClampingScrollPhysics(),
+        slivers: <Widget>[
+          _buildHeader(screenHeight),
+          _buildPreventionTips(screenHeight),
+          _buildYourOwnTest(screenHeight),
+        ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
         color: Color(0xffF4E3E3),
@@ -890,6 +64,274 @@ class _DashboardpageState extends State<Dashboardpage>
         animationDuration: Duration(milliseconds: 200),
         animationCurve: Curves.bounceIn,
         onTap: (index) {},
+      ),
+    );
+  }
+
+  SliverToBoxAdapter _buildHeader(double screenHeight) {
+    return SliverToBoxAdapter(
+      child: Container(
+        padding: const EdgeInsets.all(15.0),
+        decoration: BoxDecoration(
+          color: Color(0xff2F3542),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(40.0),
+            bottomRight: Radius.circular(40.0),
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Center(
+              child: Row(
+                children: <Widget>[
+                  Center(
+                    child: Text(
+                      'Paws',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: screenHeight * 0.02),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  'Want a new life companion?',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 22.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(height: screenHeight * 0.01),
+                Text(
+                  'If you want to get a new friend to keep you company, you can browse through the application in search of your newest partner.',
+                  style: const TextStyle(
+                    color: Colors.white70,
+                    fontSize: 15.0,
+                  ),
+                ),
+                SizedBox(height: screenHeight * 0.02),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    FlatButton.icon(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 8.0,
+                        horizontal: 20.0,
+                      ),
+                      onPressed: () {},
+                      color: Color(0xffFF6B81),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      icon: const Icon(
+                        Icons.search,
+                        color: Colors.white,
+                      ),
+                      label: Text(
+                        'Search',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      textColor: Colors.white,
+                    ),
+                    FlatButton.icon(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 8.0,
+                        horizontal: 20.0,
+                      ),
+                      onPressed: () {},
+                      color: Color(0xffFDCB6E),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      icon: const Icon(
+                        Icons.chat_bubble,
+                        color: Colors.white,
+                      ),
+                      label: Text(
+                        'Contact us',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      textColor: Colors.white,
+                    ),
+                  ],
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  SliverToBoxAdapter _buildPreventionTips(double screenHeight) {
+    return SliverToBoxAdapter(
+      child: Container(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              'Categories',
+              style: const TextStyle(
+                fontSize: 22.0,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => AdoptScrean(),
+                          ),
+                        );
+                      },
+                      child: Image.asset(
+                        'assets/images/1.png',
+                        height: screenHeight * 0.12,
+                      ),
+                    ),
+                    SizedBox(height: screenHeight * 0.015),
+                    Text(
+                      'Broswe\nanimals',
+                      style: const TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                ),
+                Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => SheltersScreen(),
+                          ),
+                        );
+                      },
+                      child: Image.asset(
+                        'assets/images/5.png',
+                        height: screenHeight * 0.12,
+                      ),
+                    ),
+                    SizedBox(height: screenHeight * 0.015),
+                    Text(
+                      'Browse \nshelters',
+                      style: const TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                ),
+                Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {},
+                      child: Image.asset(
+                        'assets/images/3.png',
+                        height: screenHeight * 0.12,
+                      ),
+                    ),
+                    SizedBox(height: screenHeight * 0.015),
+                    Text(
+                      'Report a\nstray',
+                      style: const TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      textAlign: TextAlign.center,
+                    )
+                  ],
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  SliverToBoxAdapter _buildYourOwnTest(double screenHeight) {
+    return SliverToBoxAdapter(
+      child: Container(
+        margin: const EdgeInsets.symmetric(
+          vertical: 10.0,
+          horizontal: 20.0,
+        ),
+        padding: const EdgeInsets.all(10.0),
+        height: screenHeight * 0.15,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xffF4E3E3), Color(0xffFF6B81)],
+          ),
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Image.asset('assets/images/2.png'),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => SheltersScreen(),
+                  ),
+                );
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    'Offer for adpotion!',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: screenHeight * 0.01),
+                  Text(
+                    'Find a new home\nfor your animale.',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.0,
+                    ),
+                    maxLines: 2,
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

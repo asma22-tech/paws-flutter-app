@@ -1,3 +1,4 @@
+import 'package:Paws/ShelterScreen/shelters.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -374,7 +375,7 @@ class _DashboardState extends State<Dashboard> {
                                         children: [
                                           Spacer(),
                                           Text(
-                                            "Adopt",
+                                            "Donate",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 18),
@@ -519,7 +520,7 @@ class _DashboardState extends State<Dashboard> {
                                                             .center,
                                                     children: [
                                                       Text(
-                                                        "see animals",
+                                                        "see shelters",
                                                         style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -558,13 +559,13 @@ class _DashboardState extends State<Dashboard> {
                                                           MaterialPageRoute(
                                                               builder:
                                                                   (context) {
-                                                            return AdoptScrean();
+                                                            return SheltersScreen();
                                                           }),
                                                         );
                                                       },
                                                       child: Center(
                                                         child: Text(
-                                                          "Adopt",
+                                                          "Donate",
                                                           style: TextStyle(
                                                             fontWeight:
                                                                 FontWeight.bold,
@@ -620,7 +621,7 @@ class _DashboardState extends State<Dashboard> {
                                         children: [
                                           Spacer(),
                                           Text(
-                                            "Adopt",
+                                            "Report",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 18),
@@ -765,7 +766,7 @@ class _DashboardState extends State<Dashboard> {
                                                             .center,
                                                     children: [
                                                       Text(
-                                                        "see animals",
+                                                        "report stray",
                                                         style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.bold,
@@ -773,7 +774,7 @@ class _DashboardState extends State<Dashboard> {
                                                         ),
                                                       ),
                                                       Text(
-                                                        "avaiblale",
+                                                        "animals",
                                                         style: TextStyle(
                                                             fontSize: 13),
                                                       ),
@@ -810,7 +811,7 @@ class _DashboardState extends State<Dashboard> {
                                                       },
                                                       child: Center(
                                                         child: Text(
-                                                          "Adopt",
+                                                          "Report",
                                                           style: TextStyle(
                                                             fontWeight:
                                                                 FontWeight.bold,
