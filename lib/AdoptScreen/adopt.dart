@@ -883,11 +883,11 @@ class _AdoptScreanState extends State<AdoptScrean>
                                                       padding: EdgeInsets.only(
                                                         top: 10.0,
                                                       ),
-                                                      itemCount: frogs.length,
+                                                      itemCount: fishes.length,
                                                       itemBuilder:
                                                           (context, index) {
                                                         final animal =
-                                                            frogs[index];
+                                                            fishes[index];
 
                                                         return GestureDetector(
                                                           onTap: () =>
@@ -902,7 +902,7 @@ class _AdoptScreanState extends State<AdoptScrean>
                                                           child: Container(
                                                             padding:
                                                                 EdgeInsets.only(
-                                                              bottom: 50.0,
+                                                              bottom: 10.0,
                                                               right: 10.0,
                                                               left: 10.0,
                                                             ),
@@ -924,7 +924,7 @@ class _AdoptScreanState extends State<AdoptScrean>
                                                                         EdgeInsets
                                                                             .symmetric(
                                                                       horizontal:
-                                                                          50.0,
+                                                                          20.0,
                                                                       vertical:
                                                                           20.0,
                                                                     ),
@@ -963,7 +963,7 @@ class _AdoptScreanState extends State<AdoptScrean>
                                                                                 ],
                                                                               ),
                                                                               SizedBox(
-                                                                                height: 5.0,
+                                                                                height: 10.0,
                                                                               ),
                                                                               Text(
                                                                                 animal.scientificName,
@@ -974,7 +974,7 @@ class _AdoptScreanState extends State<AdoptScrean>
                                                                                 ),
                                                                               ),
                                                                               SizedBox(
-                                                                                height: 5.0,
+                                                                                height: 10.0,
                                                                               ),
                                                                               Text(
                                                                                 '${animal.age} years old',
@@ -984,7 +984,7 @@ class _AdoptScreanState extends State<AdoptScrean>
                                                                                 ),
                                                                               ),
                                                                               SizedBox(
-                                                                                height: 5.0,
+                                                                                height: 10.0,
                                                                               ),
                                                                               Row(
                                                                                 children: <Widget>[

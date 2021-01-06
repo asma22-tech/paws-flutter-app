@@ -1,9 +1,9 @@
+import 'package:Paws/FeedScreen/feed.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:Paws/AdoptScreen/adopt.dart';
 import 'package:Paws/ShelterScreen/shelters.dart';
-import 'package:Paws/StrayScreen/stray.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -63,7 +63,28 @@ class _HomeScreenState extends State<HomeScreen> {
         index: 0,
         animationDuration: Duration(milliseconds: 200),
         animationCurve: Curves.bounceIn,
-        onTap: (index) {},
+        onTap: (index) {
+          if (index == 0)
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (BuildContext context) {
+              return HomeScreen();
+            }));
+          if (index == 1)
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (BuildContext context) {
+              return AdoptScrean();
+            }));
+          if (index == 2)
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (BuildContext context) {
+              return FeedScreen();
+            }));
+          if (index == 3)
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (BuildContext context) {
+              return HomeScreen();
+            }));
+        },
       ),
     );
   }
