@@ -21,6 +21,8 @@ environment:
 
 dependencies:
   flutter_launcher_icons: "^0.7.3"
+  firebase_auth: ^0.18.4+1
+  firebase_core: ^0.5.3
 
   flutter:
     sdk: flutter
@@ -73,6 +75,12 @@ flutter:
     - assets/images/shelter2.jpg
     - assets/images/shelter3.jpg
     - assets/images/shelter4.jpg
+    - assets/images/Paws.png
+    - assets/images/wool.png
+    - assets/images/StartCat.png
+    - assets/images/SignUpCat.png
+    - assets/images/SignInDog.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

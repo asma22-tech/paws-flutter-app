@@ -1,4 +1,4 @@
-import 'package:Paws/home.dart';
+import 'package:Paws/Start.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:Paws/style.dart';
@@ -207,7 +207,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => (HomeScreen()),
+                      builder: (context) => (Start()),
                     ),
                   );
                 },
