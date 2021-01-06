@@ -4,6 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:Paws/AdoptScreen/adopt.dart';
 import 'package:Paws/ShelterScreen/shelters.dart';
+<<<<<<< HEAD
+=======
+import 'package:Paws/StrayScreen/stray.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+>>>>>>> 7512b8fd7ab941320c6f70e52f88f40d1d1ed4b9
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -11,6 +16,34 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  User user;
+  bool isloggedin = false;
+
+  getUser() async {
+    User firebaseUser = _auth.currentUser;
+    await firebaseUser?.reload();
+    firebaseUser = _auth.currentUser;
+
+    if (firebaseUser != null) {
+      setState(() {
+        this.user = firebaseUser;
+        this.isloggedin = true;
+      });
+    }
+  }
+
+  signOut() async {
+    _auth.signOut();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    this.getUser();
+    this.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;

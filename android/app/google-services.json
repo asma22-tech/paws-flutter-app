@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "110810649407",
+    "project_id": "paws-72f40",
+    "storage_bucket": "paws-72f40.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:110810649407:android:f0940218705227b07a398a",
+        "android_client_info": {
+          "package_name": "com.example.onboardingapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "110810649407-ukjaachg1q76bkq0rhpm8e0nlksbn4l6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABdRcu4nNeqd2B3pEGnsQqTVlammqzFZU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "110810649407-ukjaachg1q76bkq0rhpm8e0nlksbn4l6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
