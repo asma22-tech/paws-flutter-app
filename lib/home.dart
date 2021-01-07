@@ -4,10 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:Paws/AdoptScreen/adopt.dart';
 import 'package:Paws/ShelterScreen/shelters.dart';
-<<<<<<< HEAD
-=======
 import 'package:firebase_auth/firebase_auth.dart';
->>>>>>> 7512b8fd7ab941320c6f70e52f88f40d1d1ed4b9
 
 class HomeScreen extends StatefulWidget {
   @override
