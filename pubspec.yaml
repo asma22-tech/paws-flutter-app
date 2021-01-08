@@ -24,15 +24,21 @@ dependencies:
   firebase_auth: ^0.18.4+1
   firebase_core: ^0.5.3
   keyboard_actions: ^3.3.0+1
+  geolocator: ^6.1.13
+  geocoding: ^1.0.5
+  uuid: ^2.2.2
+  path_provider: ^1.6.27
+  
 
   cloud_firestore: ^0.14.4
   firebase_storage: ^5.2.0
+  firebase_database: ^4.4.0
   shared_preferences: ^0.5.7+1
 
   firebase_messaging: ^7.0.3
   flutter_local_notifications: ^1.4.3
   cached_network_image: ^2.1.0+1
-
+  intl: ^0.16.1
   image_picker: ^0.6.3+4
   image_cropper: ^1.2.1
 

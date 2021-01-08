@@ -55,12 +55,12 @@ class _AdoptScreanState extends State<AdoptScrean>
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(
-            top: 60.0,
+            top: 65.0,
           ),
           child: Column(
             children: <Widget>[
               Container(
-                height: 27,
+                height: 42.4,
                 child: Padding(
                   padding: EdgeInsets.symmetric(
                     horizontal: 10,
@@ -81,7 +81,7 @@ class _AdoptScreanState extends State<AdoptScrean>
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 3),
+                  padding: const EdgeInsets.only(top: 7),
                   child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
@@ -95,7 +95,7 @@ class _AdoptScreanState extends State<AdoptScrean>
                             padding:
                                 EdgeInsets.only(top: 25, left: 10, right: 10),
                             child: Container(
-                              height: 450,
+                              height: 470,
                               padding: const EdgeInsets.symmetric(
                                   vertical: 8, horizontal: 5),
                               child: DefaultTabController(

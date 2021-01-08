@@ -5,6 +5,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:Paws/AdoptScreen/adopt.dart';
 import 'package:Paws/ShelterScreen/shelters.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:Paws/FeedScreen/addpost.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -86,6 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
         items: [
           Icon(Icons.home, size: 30),
           Icon(Icons.search, size: 30),
+          Icon(Icons.add, size: 30),
           Icon(Icons.favorite, size: 30),
           Icon(Icons.settings, size: 30),
         ],
@@ -109,6 +111,11 @@ class _HomeScreenState extends State<HomeScreen> {
               return FeedScreen();
             }));
           if (index == 3)
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (BuildContext context) {
+              return Addpost();
+            }));
+          if (index == 4)
             Navigator.of(context)
                 .push(MaterialPageRoute(builder: (BuildContext context) {
               return HomeScreen();
