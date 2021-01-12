@@ -16,6 +16,11 @@ class _StartState extends State<Start>
 
     Navigator.pushReplacementNamed(context, "SignUp");
   }
+
+  navigateToShelterSignUp()async{
+
+    Navigator.pushReplacementNamed(context, "ShelterSignUp");
+  }
   @override
   Widget build(BuildContext context) 
   {
@@ -59,7 +64,7 @@ class _StartState extends State<Start>
                               children: <Widget>[
                                 Container
                                 (
-                                  width: 300,
+                                  width: MediaQuery.of(context).size.width * 0.7,
                                   child: ClipRRect
                                   ( 
                                     borderRadius: BorderRadius.circular(20),
@@ -67,7 +72,7 @@ class _StartState extends State<Start>
                                     (
                                       padding: EdgeInsets.symmetric(vertical: 20, horizontal: 40),
                                       color: Colors.blueGrey[900],
-                                      onPressed: (){},
+                                      onPressed: navigateToShelterSignUp,
                                       child: Text
                                       ('Sign Up As Shelter',style: TextStyle
                                       (
@@ -82,7 +87,7 @@ class _StartState extends State<Start>
                                 SizedBox(height: 15.0),
                                 Container
                                 (
-                                  width: 300,
+                                  width: MediaQuery.of(context).size.width * 0.7,
                                   child: ClipRRect
                                   ( 
                                     borderRadius: BorderRadius.circular(20),

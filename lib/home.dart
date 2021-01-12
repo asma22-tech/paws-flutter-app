@@ -1,3 +1,6 @@
+import 'package:Paws/Screens/search.dart';
+import 'package:Paws/Screens/shelter_profile.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
@@ -31,6 +34,22 @@ class _HomeScreenState extends State<HomeScreen> {
 
   signOut() async {
     _auth.signOut();
+  }
+
+  setProfile() async {
+    var userID = _auth.currentUser.uid;
+    DocumentSnapshot result = await FirebaseFirestore.instance
+        .collection('Shelters')
+        .doc(userID)
+        .get();
+    if (result == null || !result.exists) {
+    } else {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  ShelterProfileScreen(shelterData: result, category: '1')));
+    }
   }
 
   @override
@@ -92,7 +111,19 @@ class _HomeScreenState extends State<HomeScreen> {
         index: 0,
         animationDuration: Duration(milliseconds: 200),
         animationCurve: Curves.bounceIn,
-        onTap: (index) {},
+        onTap: (index) {
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => (Search()),
+              ),
+            );
+          }
+          if (index == 2) {
+            setProfile();
+          }
+        },
       ),
     );
   }
