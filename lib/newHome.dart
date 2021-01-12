@@ -355,7 +355,7 @@ class _NewHomeState extends State<NewHome> {
                   ),
                   SizedBox(height: screenHeight * 0.01),
                   Text(
-                    'Find a new home\nfor your animale.',
+                    'Find a new home\nfor your animal.',
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 16.0,
