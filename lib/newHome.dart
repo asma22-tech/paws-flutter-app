@@ -1,6 +1,5 @@
 import 'package:Paws/Screens/search.dart';
 import 'package:Paws/Screens/shelter_profile.dart';
-import 'package:Paws/newHome.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:Paws/FeedScreen/feed.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,51 +10,95 @@ import 'package:Paws/ShelterScreen/shelters.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:Paws/FeedScreen/addpost.dart';
 
-class HomeScreen extends StatefulWidget {
+class NewHome extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _NewHomeState createState() => _NewHomeState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-    int _currentIndex = 0;
-    final List<Widget> _children = [
-    NewHome(),
-    AdoptScrean(),
-    Addpost(),
-    FeedScreen(),
-    Search(),
+class _NewHomeState extends State<NewHome> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  User user;
+  bool isloggedin = false;
 
+  getUser() async {
+    User firebaseUser = _auth.currentUser;
+    await firebaseUser?.reload();
+    firebaseUser = _auth.currentUser;
 
-  ];
-  void onTabTapped(int index) {
-   setState(() {
-     _currentIndex = index;
-   });
- }
+    if (firebaseUser != null) {
+      setState(() {
+        this.user = firebaseUser;
+        this.isloggedin = true;
+      });
+    }
+  }
+
+  signOut() async {
+    _auth.signOut();
+  }
+
+  setProfile() async {
+    var userID = _auth.currentUser.uid;
+    DocumentSnapshot result = await FirebaseFirestore.instance
+        .collection('Shelters')
+        .doc(userID)
+        .get();
+    if (result == null || !result.exists) {
+    } else {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  ShelterProfileScreen(shelterData: result, category: '1')));
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    this.getUser();
+    this.signOut();
+  }
 
 
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      body: _children[_currentIndex],
-      //_children[_currentIndex],
-      bottomNavigationBar: CurvedNavigationBar(
-        color: Color(0xffF4E3E3),
-        backgroundColor: Colors.white,
-        buttonBackgroundColor: Colors.white,
-        height: 50,
-        items: [
-          Icon(Icons.home, size: 30),
-          Icon(Icons.search, size: 30),
-          Icon(Icons.add, size: 30),
-          Icon(Icons.movie, size: 30),
-          Icon(Icons.map, size: 30),
+      appBar: AppBar(
+        backgroundColor: Color(0xff2F3542),
+        elevation: 0.0,
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          iconSize: 28.0,
+          onPressed: () {},
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.notifications_none),
+            iconSize: 28.0,
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.favorite),
+            iconSize: 28.0,
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(Icons.forum_rounded),
+            iconSize: 28.0,
+            onPressed: () {},
+          ),
         ],
-        index: _currentIndex,
-        animationDuration: Duration(milliseconds: 200),
-        animationCurve: Curves.bounceIn,
-        onTap: onTabTapped,
+      ),
+      body: 
+      CustomScrollView(
+        physics: ClampingScrollPhysics(),
+        slivers: <Widget>[
+          _buildHeader(screenHeight),
+          _buildPreventionTips(screenHeight),
+          _buildYourOwnTest(screenHeight),
+        ],
       ),
     );
   }

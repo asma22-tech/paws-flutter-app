@@ -60,7 +60,7 @@ class _AddpostState extends State<Addpost> {
           children: <Widget>[
             SimpleDialogOption(
               child: Text(
-                "capture Image with Camera",
+                "Capture Image with Camera",
                 style: TextStyle(
                   color: Colors.black,
                 ),
@@ -69,21 +69,12 @@ class _AddpostState extends State<Addpost> {
             ),
             SimpleDialogOption(
               child: Text(
-                "Select image from galary",
+                "Select image from gallery",
                 style: TextStyle(
                   color: Colors.black,
                 ),
               ),
               onPressed: captureimagefromgallery,
-            ),
-            SimpleDialogOption(
-              child: Text(
-                "Cancel",
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-              onPressed: () {},
             ),
           ],
         );
@@ -93,6 +84,7 @@ class _AddpostState extends State<Addpost> {
 
   addimageScreen() {
     return Container(
+      width: MediaQuery.of(context).size.width,
       color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -246,7 +238,7 @@ class _AddpostState extends State<Addpost> {
                 controller: descriptionTextEditingController,
                 decoration: InputDecoration(
                   hintText: "write post",
-                  hintStyle: TextStyle(color: Colors.white),
+                  hintStyle: TextStyle(color: Colors.grey),
                   border: InputBorder.none,
                 ),
               ),
@@ -256,17 +248,17 @@ class _AddpostState extends State<Addpost> {
           ListTile(
             leading: Icon(
               Icons.person_pin_circle,
-              color: Colors.white,
+              color: Colors.grey,
               size: 36,
             ),
             title: Container(
               width: 250,
               child: TextField(
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.grey),
                 controller: locationTextEditingController,
                 decoration: InputDecoration(
                   hintText: "write your location.",
-                  hintStyle: TextStyle(color: Colors.white),
+                  hintStyle: TextStyle(color: Colors.grey),
                   border: InputBorder.none,
                 ),
               ),

@@ -25,12 +25,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        FutureProvider(create: (context)=> locatorService.getLocation()),
-        ProxyProvider<Position,Future<List<Place>>>( 
-          update: (context,position,places){
-            return (position !=null) ? placesService.getPlaces(position.latitude, position.longitude) :null;
+        FutureProvider(create: (context) => locatorService.getLocation()),
+        ProxyProvider<Position, Future<List<Place>>>(
+          update: (context, position, places) {
+            return (position != null)
+                ? placesService.getPlaces(position.latitude, position.longitude)
+                : null;
           },
-        )        
+        )
       ],
       child: MaterialApp(
           theme: ThemeData(primaryColor: Colors.pink),

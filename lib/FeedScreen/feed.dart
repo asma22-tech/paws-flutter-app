@@ -214,68 +214,6 @@ class _FeedScreenState extends State<FeedScreen> {
           _buildPost(1),
         ],
       ),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30.0),
-          topRight: Radius.circular(30.0),
-        ),
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.dashboard,
-                size: 30.0,
-                color: Colors.black,
-              ),
-              title: Text(''),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.search,
-                size: 30.0,
-                color: Colors.grey,
-              ),
-              title: Text(''),
-            ),
-            BottomNavigationBarItem(
-              icon: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
-                child: FlatButton(
-                  padding: EdgeInsets.symmetric(vertical: 10.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                  color: Color(0xFF23B66F),
-                  onPressed: () => print('Upload photo'),
-                  child: Icon(
-                    Icons.add,
-                    size: 35.0,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              title: Text(''),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.favorite_border,
-                size: 30.0,
-                color: Colors.grey,
-              ),
-              title: Text(''),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person_outline,
-                size: 30.0,
-                color: Colors.grey,
-              ),
-              title: Text(''),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
