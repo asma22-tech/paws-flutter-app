@@ -15,6 +15,7 @@ class _ShelterSignUpState extends State<ShelterSignUp> {
   String _name, _email, _password, _phoneNumber, _district;
   GeoPoint _location;
 
+
   var userID;
 
   checkAuthentication() async {
@@ -30,7 +31,8 @@ class _ShelterSignUpState extends State<ShelterSignUp> {
       "Name": _name,
       "Email": _email,
       "PhoneNumber": _phoneNumber,
-      "District": _district
+      "District": _district,
+      "Location": null
     });
   }
 
