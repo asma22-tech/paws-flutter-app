@@ -1,13 +1,14 @@
 import 'package:Paws/Screens/search.dart';
 import 'package:Paws/Screens/shelter_profile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:Paws/FeedScreen/feed.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:Paws/AdoptScreen/adopt.dart';
 import 'package:Paws/ShelterScreen/shelters.dart';
-import 'package:Paws/StrayScreen/stray.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:Paws/FeedScreen/addpost.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -105,6 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
         items: [
           Icon(Icons.home, size: 30),
           Icon(Icons.search, size: 30),
+          Icon(Icons.add, size: 30),
           Icon(Icons.favorite, size: 30),
           Icon(Icons.settings, size: 30),
         ],
@@ -112,17 +114,31 @@ class _HomeScreenState extends State<HomeScreen> {
         animationDuration: Duration(milliseconds: 200),
         animationCurve: Curves.bounceIn,
         onTap: (index) {
-          if (index == 1) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => (Search()),
-              ),
-            );
-          }
-          if (index == 2) {
-            setProfile();
-          }
+          if (index == 0)
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (BuildContext context) {
+              return HomeScreen();
+            }));
+          if (index == 1)
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (BuildContext context) {
+              return AdoptScrean();
+            }));
+          if (index == 2)
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (BuildContext context) {
+              return FeedScreen();
+            }));
+          if (index == 3)
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (BuildContext context) {
+              return Addpost();
+            }));
+          if (index == 4)
+            Navigator.of(context)
+                .push(MaterialPageRoute(builder: (BuildContext context) {
+              return HomeScreen();
+            }));
         },
       ),
     );

@@ -1,5 +1,15 @@
+import 'package:Paws/firebase.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+
+FirebaseAuth _auth = FirebaseAuth.instance;
+final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+final Reference storageReferance =
+    FirebaseStorage.instance.ref().child("Posts Pictures");
+final postsReferance = FirebaseFirestore.instance.collection("Posts");
+String _name, _email, _password;
 
 class SignUp extends StatefulWidget {
   @override
@@ -7,11 +17,6 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  FirebaseAuth _auth = FirebaseAuth.instance;
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  String _name, _email, _password;
-
   checkAuthentication() async {
     _auth.authStateChanges().listen((user) async {
       if (user != null) {
@@ -35,6 +40,7 @@ class _SignUpState extends State<SignUp> {
             email: _email, password: _password);
         if (user != null) {
           await _auth.currentUser.updateProfile(displayName: _name);
+          userSetup(_name);
         }
       } catch (e) {
         showError(e.message);
