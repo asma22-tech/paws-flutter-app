@@ -173,20 +173,6 @@ class _AddpostState extends State<Addpost> {
     });
   }
 
-  savePostInfotoFireStore({String url, String location, String description}) {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    String uid = auth.currentUser.uid.toString();
-    postsReferance.doc(uid).collection("users posts").doc(postId).set({
-      "post Id": postId,
-      "ownerId": uid,
-      "timestamp": Timestamp,
-      "likes": {},
-      "description": description,
-      "location": location,
-      "url": url,
-    });
-  }
-
   Future<String> uploadPhoto(mImageFile) async {
     UploadTask mstorageUploadTask =
         storageReferance.child("post_$postId.jpg").putFile(mImageFile);
