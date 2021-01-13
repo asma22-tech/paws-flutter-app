@@ -143,9 +143,31 @@ class _DarkInstagramState extends State<DarkInstagram> {
                         ],
                       ),
                     ],
+<<<<<<< HEAD
                   );
                 });
           }),
+=======
+                  ),
+                  child: CircleAvatar(
+                    child: ClipOval(
+                      child: Image(
+                        height: 60.0,
+                        width: 60.0,
+                        image: AssetImage(stories[index - 1]),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          _buildPost(0),
+          _buildPost(1),
+        ],
+      ),
+>>>>>>> 2845e7b6f471edac1c6d0c36057b74d0904d4565
     );
   }
 }

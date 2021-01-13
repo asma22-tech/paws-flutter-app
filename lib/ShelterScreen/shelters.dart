@@ -237,22 +237,6 @@ class _SheltersScreenState extends State<SheltersScreen>
           ),
         ],
       ),
-      bottomNavigationBar: CurvedNavigationBar(
-        color: Color(0xffF4E3E3),
-        backgroundColor: Colors.white,
-        buttonBackgroundColor: Colors.white,
-        height: 50,
-        items: [
-          Icon(Icons.home, size: 30),
-          Icon(Icons.search, size: 30),
-          Icon(Icons.favorite, size: 30),
-          Icon(Icons.settings, size: 30),
-        ],
-        index: 0,
-        animationDuration: Duration(milliseconds: 200),
-        animationCurve: Curves.bounceIn,
-        onTap: (index) {},
-      ),
     );
   }
 }

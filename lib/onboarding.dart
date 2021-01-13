@@ -1,4 +1,5 @@
 import 'package:Paws/Start.dart';
+import 'package:Paws/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:Paws/style.dart';
@@ -88,7 +89,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             Image.asset("assets/images/2.png"),
                             SizedBox(height: 1.0),
                             Text(
-                              'Hi Human\nAre you ready to help me?.\nswip right',
+                              'Hi Human\nAre you ready to help me?.\nswipe right',
                               style: kSubtitleStyle,
                             ),
                           ],
@@ -115,7 +116,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                             SizedBox(height: 5.0),
                             Text(
-                              'Through is app you can either adopt, donate money to needed shelters and report seeing stray animals.',
+                              'Through this app you can either adopt, donate money to needed shelters, or report seeing stray animals.',
                               style: kSubtitleStyle,
                             ),
                           ],
@@ -207,8 +208,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => (Start()),
-                    ),
+                      builder: (context) => (Start())),
                   );
                 },
                 child: Center(
