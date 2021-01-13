@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:Paws/onboarding.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -22,11 +21,10 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         home: OnboardingScreen(),
         routes: <String, WidgetBuilder>{
-          "Login":(BuildContext context)=>Login(),
-          "SignUp":(BuildContext context)=>SignUp(),
-          "Start":(BuildContext context)=>Start(),
-          "HomeScreen":(BuildContext context)=>HomeScreen(),
-        }
-        );
+          "Login": (BuildContext context) => Login(),
+          "SignUp": (BuildContext context) => SignUp(),
+          "Start": (BuildContext context) => Start(),
+          "HomeScreen": (BuildContext context) => HomeScreen(),
+        });
   }
 }

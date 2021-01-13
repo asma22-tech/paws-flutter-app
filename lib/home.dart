@@ -6,6 +6,7 @@ import 'package:Paws/AdoptScreen/adopt.dart';
 import 'package:Paws/ShelterScreen/shelters.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:Paws/FeedScreen/addpost.dart';
+import 'package:Paws/thread/thread.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -88,7 +89,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Icon(Icons.home, size: 30),
           Icon(Icons.search, size: 30),
           Icon(Icons.add, size: 30),
-          Icon(Icons.favorite, size: 30),
+          Icon(Icons.person, size: 30),
           Icon(Icons.settings, size: 30),
         ],
         index: 0,
@@ -108,12 +109,12 @@ class _HomeScreenState extends State<HomeScreen> {
           if (index == 2)
             Navigator.of(context)
                 .push(MaterialPageRoute(builder: (BuildContext context) {
-              return FeedScreen();
+              return Addpost();
             }));
           if (index == 3)
             Navigator.of(context)
                 .push(MaterialPageRoute(builder: (BuildContext context) {
-              return Addpost();
+              return Thread();
             }));
           if (index == 4)
             Navigator.of(context)

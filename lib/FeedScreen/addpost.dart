@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:Paws/FeedScreen/feed.dart';
+import 'package:Paws/firebase.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:geolocator/geolocator.dart';
@@ -160,10 +162,11 @@ class _AddpostState extends State<Addpost> {
     });
     await compressingPhoto();
     String downloadUrl = await uploadPhoto(file);
-    savePostInfotoFireStore(
-        url: downloadUrl,
-        location: locationTextEditingController.text,
-        description: descriptionTextEditingController.text);
+    postsSetup(downloadUrl, locationTextEditingController.text,
+        descriptionTextEditingController.text);
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+      return DarkInstagram();
+    }));
     locationTextEditingController.clear();
     descriptionTextEditingController.clear();
     setState(() {

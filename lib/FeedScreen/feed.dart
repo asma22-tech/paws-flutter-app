@@ -1,281 +1,151 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:Paws/FeedScreen/postinfo.dart';
-import 'package:Paws/FeedScreen/viewpost.dart';
 
-class FeedScreen extends StatefulWidget {
+class DarkInstagram extends StatefulWidget {
   @override
-  _FeedScreenState createState() => _FeedScreenState();
+  _DarkInstagramState createState() => _DarkInstagramState();
 }
 
-class _FeedScreenState extends State<FeedScreen> {
-  Widget _buildPost(int index) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-      child: Container(
-        width: double.infinity,
-        height: 560.0,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(25.0),
-        ),
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 10.0),
-              child: Column(
-                children: <Widget>[
-                  ListTile(
-                    leading: Container(
-                      width: 50.0,
-                      height: 50.0,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black45,
-                            offset: Offset(0, 2),
-                            blurRadius: 6.0,
-                          ),
-                        ],
-                      ),
-                      child: CircleAvatar(
-                        child: ClipOval(
-                          child: Image(
-                            height: 50.0,
-                            width: 50.0,
-                            image: AssetImage(posts[index].authorImageUrl),
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
-                    title: Text(
-                      posts[index].authorName,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    subtitle: Text(posts[index].timeAgo),
-                    trailing: IconButton(
-                      icon: Icon(Icons.more_horiz),
-                      color: Colors.black,
-                      onPressed: () => print('More'),
-                    ),
-                  ),
-                  InkWell(
-                    onDoubleTap: () => print('Like post'),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => ViewPostScreen(
-                            post: posts[index],
-                          ),
-                        ),
-                      );
-                    },
-                    child: Container(
-                      margin: EdgeInsets.all(10.0),
-                      width: double.infinity,
-                      height: 400.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black45,
-                            offset: Offset(0, 5),
-                            blurRadius: 8.0,
-                          ),
-                        ],
-                        image: DecorationImage(
-                          image: AssetImage(posts[index].imageUrl),
-                          fit: BoxFit.fitWidth,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Row(
-                              children: <Widget>[
-                                IconButton(
-                                  icon: Icon(Icons.favorite_border),
-                                  iconSize: 30.0,
-                                  onPressed: () => print('Like post'),
-                                ),
-                                Text(
-                                  '2,515',
-                                  style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(width: 20.0),
-                            Row(
-                              children: <Widget>[
-                                IconButton(
-                                  icon: Icon(Icons.chat),
-                                  iconSize: 30.0,
-                                  onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (_) => ViewPostScreen(
-                                          post: posts[index],
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                ),
-                                Text(
-                                  '350',
-                                  style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        IconButton(
-                          icon: Icon(Icons.bookmark_border),
-                          iconSize: 30.0,
-                          onPressed: () => print('Save post'),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+class _DarkInstagramState extends State<DarkInstagram> {
+  Future getData() async {
+    var firestore = Firestore.instance;
+    QuerySnapshot qn = await firestore.collection("Posts").get();
+    return qn.docs;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFEDF0F6),
-      body: ListView(
-        physics: AlwaysScrollableScrollPhysics(),
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-          ),
-          Container(
-            width: double.infinity,
-            height: 100.0,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: stories.length + 1,
-              itemBuilder: (BuildContext context, int index) {
-                if (index == 0) {
-                  return SizedBox(width: 10.0);
-                }
-                return Container(
-                  margin: EdgeInsets.all(10.0),
-                  width: 60.0,
-                  height: 60.0,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black45,
-                        offset: Offset(0, 2),
-                        blurRadius: 6.0,
+      backgroundColor: Colors.white,
+      body: FutureBuilder(
+          future: getData(),
+          builder: (_, snapdhot) {
+            return ListView.builder(
+                itemCount: snapdhot.data.lenght,
+                itemBuilder: (_, index) {
+                  DocumentSnapshot data = snapdhot.data[index];
+                  return Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: <Widget>[
+                      Column(
+                        children: <Widget>[
+                          Container(
+                            height: 160,
+                            color: Color(0xffF4E3E3),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: Row(
+                                    children: <Widget>[
+                                      Expanded(
+                                        child: Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Image.asset(
+                                            'assets/images/cat1.png',
+                                            width: 35,
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Center(
+                                          child: Image.asset(
+                                              'assets/images/cat1.png'),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: <Widget>[
+                                            Image.asset(
+                                                'assets/images/cat1.png',
+                                                width: 35),
+                                            Image.asset(
+                                                'assets/images/cat1.png',
+                                                width: 35),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.all(15),
+                            padding: EdgeInsets.all(15),
+                            height: 450,
+                            decoration: BoxDecoration(
+                              color: Color(0xffF4E3E3),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    CircleAvatar(
+                                        radius: 18,
+                                        backgroundImage: AssetImage(
+                                            'assets/images/cat1.png')),
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "lol",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    Spacer(),
+                                    Icon(Icons.more_horiz)
+                                  ],
+                                ),
+                                Container(
+                                  height: 50,
+                                  child: Text(data["caption"]),
+                                ),
+                                Container(
+                                  height: 330,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: data["mediaUrl"]),
+                                  ),
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    Icon(Icons.favorite,
+                                        color: Colors.redAccent),
+                                    Text(
+                                      '1.245',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    SizedBox(width: 20),
+                                    Icon(Icons.chat_bubble_outline),
+                                    Text(
+                                      ' 54',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    Spacer(),
+                                    Icon(Icons.bookmark_border),
+                                  ],
+                                )
+                              ],
+                            ),
+                          )
+                        ],
                       ),
                     ],
-                  ),
-                  child: CircleAvatar(
-                    child: ClipOval(
-                      child: Image(
-                        height: 60.0,
-                        width: 60.0,
-                        image: AssetImage(stories[index - 1]),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          _buildPost(0),
-          _buildPost(1),
-        ],
-      ),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30.0),
-          topRight: Radius.circular(30.0),
-        ),
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.dashboard,
-                size: 30.0,
-                color: Colors.black,
-              ),
-              title: Text(''),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.search,
-                size: 30.0,
-                color: Colors.grey,
-              ),
-              title: Text(''),
-            ),
-            BottomNavigationBarItem(
-              icon: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
-                child: FlatButton(
-                  padding: EdgeInsets.symmetric(vertical: 10.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                  color: Color(0xFF23B66F),
-                  onPressed: () => print('Upload photo'),
-                  child: Icon(
-                    Icons.add,
-                    size: 35.0,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              title: Text(''),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.favorite_border,
-                size: 30.0,
-                color: Colors.grey,
-              ),
-              title: Text(''),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person_outline,
-                size: 30.0,
-                color: Colors.grey,
-              ),
-              title: Text(''),
-            ),
-          ],
-        ),
-      ),
+                  );
+                });
+          }),
     );
   }
 }
