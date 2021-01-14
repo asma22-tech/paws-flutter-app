@@ -25,15 +25,12 @@ class _HomeScreenState extends State<HomeScreen> {
     Addpost(),
     FeedScreen(),
     Search(),
-
-
   ];
   void onTabTapped(int index) {
    setState(() {
      _currentIndex = index;
    });
  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -50,18 +47,12 @@ class _HomeScreenState extends State<HomeScreen> {
           Icon(Icons.home, size: 30),
           Icon(Icons.search, size: 30),
           Icon(Icons.add, size: 30),
-<<<<<<< HEAD
           Icon(Icons.person, size: 30),
           Icon(Icons.settings, size: 30),
-=======
-          Icon(Icons.movie, size: 30),
-          Icon(Icons.map, size: 30),
->>>>>>> 2845e7b6f471edac1c6d0c36057b74d0904d4565
         ],
         index: _currentIndex,
         animationDuration: Duration(milliseconds: 200),
         animationCurve: Curves.bounceIn,
-<<<<<<< HEAD
         onTap: (index) {
           if (index == 0)
             Navigator.of(context)
@@ -89,9 +80,6 @@ class _HomeScreenState extends State<HomeScreen> {
               return HomeScreen();
             }));
         },
-=======
-        onTap: onTabTapped,
->>>>>>> 2845e7b6f471edac1c6d0c36057b74d0904d4565
       ),
     );
   }
