@@ -10,7 +10,6 @@ import 'package:Paws/AdoptScreen/adopt.dart';
 import 'package:Paws/ShelterScreen/shelters.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:Paws/FeedScreen/addpost.dart';
-import 'package:Paws/thread/thread.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -25,12 +24,15 @@ class _HomeScreenState extends State<HomeScreen> {
     Addpost(),
     FeedScreen(),
     Search(),
+
+
   ];
   void onTabTapped(int index) {
    setState(() {
      _currentIndex = index;
    });
  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -47,39 +49,13 @@ class _HomeScreenState extends State<HomeScreen> {
           Icon(Icons.home, size: 30),
           Icon(Icons.search, size: 30),
           Icon(Icons.add, size: 30),
-          Icon(Icons.person, size: 30),
-          Icon(Icons.settings, size: 30),
+          Icon(Icons.movie, size: 30),
+          Icon(Icons.map, size: 30),
         ],
         index: _currentIndex,
         animationDuration: Duration(milliseconds: 200),
         animationCurve: Curves.bounceIn,
-        onTap: (index) {
-          if (index == 0)
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (BuildContext context) {
-              return HomeScreen();
-            }));
-          if (index == 1)
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (BuildContext context) {
-              return AdoptScrean();
-            }));
-          if (index == 2)
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (BuildContext context) {
-              return Addpost();
-            }));
-          if (index == 3)
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (BuildContext context) {
-              return Thread();
-            }));
-          if (index == 4)
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (BuildContext context) {
-              return HomeScreen();
-            }));
-        },
+        onTap: onTabTapped,
       ),
     );
   }

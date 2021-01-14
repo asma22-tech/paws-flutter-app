@@ -156,8 +156,8 @@ class _AddpostState extends State<Addpost> {
     String downloadUrl = await uploadPhoto(file);
     postsSetup(downloadUrl, locationTextEditingController.text,
         descriptionTextEditingController.text);
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return DarkInstagram();
+    Navigator.of(context).pop(MaterialPageRoute(builder: (context) {
+      return FeedScreen();
     }));
     locationTextEditingController.clear();
     descriptionTextEditingController.clear();

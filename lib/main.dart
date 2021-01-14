@@ -9,11 +9,8 @@ import 'package:Paws/services/places_service.dart';
 import 'package:flutter/material.dart';
 import 'package:Paws/onboarding.dart';
 import 'package:firebase_core/firebase_core.dart';
-<<<<<<< HEAD
-=======
 import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
->>>>>>> 2845e7b6f471edac1c6d0c36057b74d0904d4565
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,19 +23,6 @@ class MyApp extends StatelessWidget {
   final placesService = PlacesService();
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    return MaterialApp(
-        theme: ThemeData(primaryColor: Colors.pink),
-        title: 'Paws',
-        debugShowCheckedModeBanner: false,
-        home: OnboardingScreen(),
-        routes: <String, WidgetBuilder>{
-          "Login": (BuildContext context) => Login(),
-          "SignUp": (BuildContext context) => SignUp(),
-          "Start": (BuildContext context) => Start(),
-          "HomeScreen": (BuildContext context) => HomeScreen(),
-        });
-=======
     return MultiProvider(
       providers: [
         FutureProvider(create: (context) => locatorService.getLocation()),
@@ -63,6 +47,5 @@ class MyApp extends StatelessWidget {
             "HomeScreen": (BuildContext context) => HomeScreen(),
           }),
     );
->>>>>>> 2845e7b6f471edac1c6d0c36057b74d0904d4565
   }
 }

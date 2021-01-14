@@ -1,151 +1,227 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:Paws/FeedScreen/postinfo.dart';
+import 'package:Paws/FeedScreen/viewpost.dart';
 
-class DarkInstagram extends StatefulWidget {
+class FeedScreen extends StatefulWidget {
   @override
-  _DarkInstagramState createState() => _DarkInstagramState();
+  _FeedScreenState createState() => _FeedScreenState();
 }
 
-class _DarkInstagramState extends State<DarkInstagram> {
-  Future getData() async {
-    var firestore = Firestore.instance;
-    QuerySnapshot qn = await firestore.collection("Posts").get();
-    return qn.docs;
+class _FeedScreenState extends State<FeedScreen> {
+  Widget _buildPost(int index) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+      child: Container(
+        width: double.infinity,
+        height: 560.0,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(25.0),
+        ),
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 10.0),
+              child: Column(
+                children: <Widget>[
+                  ListTile(
+                    leading: Container(
+                      width: 50.0,
+                      height: 50.0,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black45,
+                            offset: Offset(0, 2),
+                            blurRadius: 6.0,
+                          ),
+                        ],
+                      ),
+                      child: CircleAvatar(
+                        child: ClipOval(
+                          child: Image(
+                            height: 50.0,
+                            width: 50.0,
+                            image: AssetImage(posts[index].authorImageUrl),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    ),
+                    title: Text(
+                      posts[index].authorName,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    subtitle: Text(posts[index].timeAgo),
+                    trailing: IconButton(
+                      icon: Icon(Icons.more_horiz),
+                      color: Colors.black,
+                      onPressed: () => print('More'),
+                    ),
+                  ),
+                  InkWell(
+                    onDoubleTap: () => print('Like post'),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => ViewPostScreen(
+                            post: posts[index],
+                          ),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      margin: EdgeInsets.all(10.0),
+                      width: double.infinity,
+                      height: 400.0,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(25.0),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.white,
+                            offset: Offset(0, 5),
+                            blurRadius: 8.0,
+                          ),
+                        ],
+                        image: DecorationImage(
+                          image: AssetImage(posts[index].imageUrl),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                IconButton(
+                                  icon: Icon(Icons.favorite_border),
+                                  iconSize: 30.0,
+                                  onPressed: () => print('Like post'),
+                                ),
+                                Text(
+                                  '2,515',
+                                  style: TextStyle(
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(width: 20.0),
+                            Row(
+                              children: <Widget>[
+                                IconButton(
+                                  icon: Icon(Icons.chat),
+                                  iconSize: 30.0,
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => ViewPostScreen(
+                                          post: posts[index],
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                                Text(
+                                  '350',
+                                  style: TextStyle(
+                                    fontSize: 14.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.bookmark_border),
+                          iconSize: 30.0,
+                          onPressed: () => print('Save post'),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: FutureBuilder(
-          future: getData(),
-          builder: (_, snapdhot) {
-            return ListView.builder(
-                itemCount: snapdhot.data.lenght,
-                itemBuilder: (_, index) {
-                  DocumentSnapshot data = snapdhot.data[index];
-                  return Stack(
-                    alignment: Alignment.bottomCenter,
-                    children: <Widget>[
-                      Column(
-                        children: <Widget>[
-                          Container(
-                            height: 160,
-                            color: Color(0xffF4E3E3),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Expanded(
-                                        child: Container(
-                                          alignment: Alignment.centerLeft,
-                                          child: Image.asset(
-                                            'assets/images/cat1.png',
-                                            width: 35,
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Center(
-                                          child: Image.asset(
-                                              'assets/images/cat1.png'),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: <Widget>[
-                                            Image.asset(
-                                                'assets/images/cat1.png',
-                                                width: 35),
-                                            Image.asset(
-                                                'assets/images/cat1.png',
-                                                width: 35),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.all(15),
-                            padding: EdgeInsets.all(15),
-                            height: 450,
-                            decoration: BoxDecoration(
-                              color: Color(0xffF4E3E3),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    CircleAvatar(
-                                        radius: 18,
-                                        backgroundImage: AssetImage(
-                                            'assets/images/cat1.png')),
-                                    SizedBox(width: 10),
-                                    Text(
-                                      "lol",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    Spacer(),
-                                    Icon(Icons.more_horiz)
-                                  ],
-                                ),
-                                Container(
-                                  height: 50,
-                                  child: Text(data["caption"]),
-                                ),
-                                Container(
-                                  height: 330,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: data["mediaUrl"]),
-                                  ),
-                                ),
-                                Row(
-                                  children: <Widget>[
-                                    Icon(Icons.favorite,
-                                        color: Colors.redAccent),
-                                    Text(
-                                      '1.245',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    SizedBox(width: 20),
-                                    Icon(Icons.chat_bubble_outline),
-                                    Text(
-                                      ' 54',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    Spacer(),
-                                    Icon(Icons.bookmark_border),
-                                  ],
-                                )
-                              ],
-                            ),
-                          )
-                        ],
+      backgroundColor: Color(0xFFEDF0F6),
+      body: ListView(
+        physics: AlwaysScrollableScrollPhysics(),
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.0),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 15),
+              height: 50.0,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      offset: Offset(0, 10),
+                      blurRadius: 50,
+                      color: Colors.white,
+                    )
+                  ]),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: "    Search",
+                        hintStyle: TextStyle(color: Colors.black45),
+                        enabledBorder: InputBorder.none,
+                        focusedBorder: InputBorder.none,
                       ),
-                    ],
-                  );
-                });
-          }),
+                    ),
+                  ),
+                  Icon(
+                    Icons.search,
+                    size: 20,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  )
+                ],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          _buildPost(0),
+          _buildPost(1),
+        ],
+      ),
     );
   }
 }

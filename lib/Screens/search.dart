@@ -12,7 +12,7 @@ class Search extends StatefulWidget {
 class _MapsPageState extends State<Search> {
   GoogleMapController controller;
   //Map<MarkerId, Marker> markers = <MarkerId, Marker>{};
-  Map<MarkerId,Marker> markers = {};
+  Map<MarkerId, Marker> markers = {};
   var _markerIdCounter = 0;
   void initMarker(specify) async {
     final String markerIdVal = 'marker_id_$_markerIdCounter';
