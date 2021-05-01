@@ -223,7 +223,7 @@ class _AddpostState extends State<Addpost> {
             title: Container(
               width: 250,
               child: TextField(
-                style: TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.grey),
                 controller: descriptionTextEditingController,
                 decoration: InputDecoration(
                   hintText: "write post",
