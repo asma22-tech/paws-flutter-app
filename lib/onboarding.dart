@@ -81,7 +81,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 image: AssetImage(
                                   'assets/images/l.png',
                                 ),
-                                height: 100.0,
+                                height: 80.0,
                                 width: 200.0,
                               ),
                             ),

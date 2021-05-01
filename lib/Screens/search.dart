@@ -79,7 +79,7 @@ class _MapsPageState extends State<Search> {
           ? Column(
               children: <Widget>[
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.81,
+                  height: MediaQuery.of(context).size.height * 0.80,
                   width: MediaQuery.of(context).size.width,
                   child: GoogleMap(
                     markers: Set.of(markers.values),
