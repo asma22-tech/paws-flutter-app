@@ -29,8 +29,9 @@ dependencies:
   geocoding: ^1.0.5
   uuid: ^2.2.2
   path_provider: ^1.6.27
-  
-
+  timeago: ^2.0.29
+  google_sign_in: ^4.5.9
+  animator: ^2.0.2
   firebase_storage: ^5.2.0
   firebase_database: ^4.4.0
   shared_preferences: ^0.5.7+1
@@ -70,7 +71,7 @@ dev_dependencies:
     sdk: flutter
 
 flutter_icons:
-  android: "launcher_icon"
+  android: true
   ios: true
   image_path: "assets/images/l.png"
 

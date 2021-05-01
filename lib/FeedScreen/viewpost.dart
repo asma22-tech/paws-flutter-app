@@ -14,7 +14,7 @@ class ViewPostScreen extends StatefulWidget {
 class _ViewPostScreenState extends State<ViewPostScreen> {
   Widget _buildComment(int index) {
     return Padding(
-      padding: EdgeInsets.all(10.0),
+      padding: EdgeInsets.only(top: 10.0, bottom: 10),
       child: ListTile(
         leading: Container(
           width: 50.0,
@@ -30,6 +30,7 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
             ],
           ),
           child: CircleAvatar(
+            backgroundColor: Colors.pinkAccent,
             child: ClipOval(
               child: Image(
                 height: 50.0,
@@ -83,12 +84,6 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            IconButton(
-                              icon: Icon(Icons.arrow_back),
-                              iconSize: 30.0,
-                              color: Colors.black,
-                              onPressed: () => Navigator.pop(context),
-                            ),
                             Container(
                               width: MediaQuery.of(context).size.width * 0.8,
                               child: ListTile(
@@ -125,7 +120,9 @@ class _ViewPostScreenState extends State<ViewPostScreen> {
                                 ),
                                 subtitle: Text(widget.post.timeAgo),
                                 trailing: IconButton(
-                                  icon: Icon(Icons.more_horiz),
+                                  icon: Container(
+                                      margin: EdgeInsets.only(left: 90),
+                                      child: Icon(Icons.more_horiz)),
                                   color: Colors.black,
                                   onPressed: () => print('More'),
                                 ),

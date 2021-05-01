@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:Paws/FeedScreen/feed.dart';
+import 'package:Paws/firebase.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:geolocator/geolocator.dart';
@@ -152,30 +154,17 @@ class _AddpostState extends State<Addpost> {
     });
     await compressingPhoto();
     String downloadUrl = await uploadPhoto(file);
-    savePostInfotoFireStore(
-        url: downloadUrl,
-        location: locationTextEditingController.text,
-        description: descriptionTextEditingController.text);
+    postsSetup(downloadUrl, locationTextEditingController.text,
+        descriptionTextEditingController.text);
+    Navigator.of(context).pop(MaterialPageRoute(builder: (context) {
+      return FeedScreen();
+    }));
     locationTextEditingController.clear();
     descriptionTextEditingController.clear();
     setState(() {
       file = null;
       uploading = false;
       postId = Uuid().v4();
-    });
-  }
-
-  savePostInfotoFireStore({String url, String location, String description}) {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    String uid = auth.currentUser.uid.toString();
-    postsReferance.doc(uid).collection("users posts").doc(postId).set({
-      "post Id": postId,
-      "ownerId": uid,
-      "timestamp": Timestamp,
-      "likes": {},
-      "description": description,
-      "location": location,
-      "url": url,
     });
   }
 

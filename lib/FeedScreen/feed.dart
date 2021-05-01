@@ -82,14 +82,14 @@ class _FeedScreenState extends State<FeedScreen> {
                         borderRadius: BorderRadius.circular(25.0),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black45,
+                            color: Colors.white,
                             offset: Offset(0, 5),
                             blurRadius: 8.0,
                           ),
                         ],
                         image: DecorationImage(
                           image: AssetImage(posts[index].imageUrl),
-                          fit: BoxFit.fitWidth,
+                          fit: BoxFit.cover,
                         ),
                       ),
                     ),
@@ -172,43 +172,51 @@ class _FeedScreenState extends State<FeedScreen> {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.0),
           ),
-          Container(
-            width: double.infinity,
-            height: 100.0,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: stories.length + 1,
-              itemBuilder: (BuildContext context, int index) {
-                if (index == 0) {
-                  return SizedBox(width: 10.0);
-                }
-                return Container(
-                  margin: EdgeInsets.all(10.0),
-                  width: 60.0,
-                  height: 60.0,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black45,
-                        offset: Offset(0, 2),
-                        blurRadius: 6.0,
-                      ),
-                    ],
-                  ),
-                  child: CircleAvatar(
-                    child: ClipOval(
-                      child: Image(
-                        height: 60.0,
-                        width: 60.0,
-                        image: AssetImage(stories[index - 1]),
-                        fit: BoxFit.cover,
+          SizedBox(
+            height: 20,
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 15),
+              height: 50.0,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      offset: Offset(0, 10),
+                      blurRadius: 50,
+                      color: Colors.white,
+                    )
+                  ]),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: "    Search",
+                        hintStyle: TextStyle(color: Colors.black45),
+                        enabledBorder: InputBorder.none,
+                        focusedBorder: InputBorder.none,
                       ),
                     ),
                   ),
-                );
-              },
+                  Icon(
+                    Icons.search,
+                    size: 20,
+                  ),
+                  SizedBox(
+                    width: 10,
+                  )
+                ],
+              ),
             ),
+          ),
+          SizedBox(
+            height: 20,
           ),
           _buildPost(0),
           _buildPost(1),

@@ -1,8 +1,6 @@
-Paws_app
 
-A new Flutter application.
 
-## Getting Started
+## Paws_app
 
 This project is a starting point for a Flutter application.
 
